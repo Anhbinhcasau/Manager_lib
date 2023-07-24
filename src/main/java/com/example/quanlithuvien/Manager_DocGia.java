@@ -6,23 +6,22 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class Home extends Application {
+public class Manager_DocGia extends Application {
 
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
-    public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Home.class.getResource("home.fxml"));
-        stage.initStyle(StageStyle.DECORATED);
+    public void start(Stage primaryStage) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Home.class.getResource("manager_docgia.fxml"));
         AnchorPane root = fxmlLoader.load();
         Scene scene = new Scene(root);
-        stage.setTitle("Manager!");
-        stage.setScene(scene);
-        stage.show();
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 }
