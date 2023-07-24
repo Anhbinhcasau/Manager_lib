@@ -15,7 +15,6 @@ public class Book extends Application {
     public void start(Stage primaryStage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Book.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-
         primaryStage.setScene(scene);
         primaryStage.show();
 
