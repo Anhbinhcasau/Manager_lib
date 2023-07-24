@@ -9,7 +9,7 @@ import java.sql.DriverManager;
 public class ConnectDatabase {
     public Connection connection;
     public Connection getConnection(){
-        String databaseName="quanlithuvien";
+        String databaseName="thuvien";
         String dataUser="root" ;
         String dataPassword="Ha15102003@";
         String url="jdbc:mysql://localhost/" + databaseName;

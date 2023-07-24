@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class Book extends Application {
+public class BookApplication extends Application {
 
 
 
