@@ -18,7 +18,7 @@ public class Home extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Home.class.getResource("home.fxml"));
-        stage.initStyle(StageStyle.DECORATED);
+        stage.initStyle(StageStyle.TRANSPARENT);
         AnchorPane root = fxmlLoader.load();
         Scene scene = new Scene(root);
         stage.setTitle("Manager!");

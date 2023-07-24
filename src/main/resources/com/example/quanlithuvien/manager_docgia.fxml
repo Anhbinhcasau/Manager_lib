@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="543.0" prefWidth="757.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlithuvien.Manager_DocGia">
     <children>
         <Label layoutX="47.0" layoutY="51.0" text="Thông tin kích hoạt : ">
@@ -19,7 +18,7 @@
                 <Font name="System Bold" size="14.0" />
             </font>
         </Label>
-        <Button layoutX="132.0" layoutY="286.0" mnemonicParsing="false" text="Kích hoạt thẻ" />
+        <Button layoutX="162.0" layoutY="286.0" mnemonicParsing="false" text="Kích hoạt thẻ" />
         <DatePicker layoutX="158.0" layoutY="165.0" />
         <RadioButton id="rdNam" layoutX="158.0" layoutY="204.0" mnemonicParsing="false" text="Nam" />
         <RadioButton id="rdNu" layoutX="213.0" layoutY="204.0" mnemonicParsing="false" text="Nữ" />
@@ -35,11 +34,11 @@
             <content>
                 <TableView prefHeight="238.0" prefWidth="770.0">
                     <columns>
-                        <TableColumn prefWidth="91.199980199337" text="Mã sách" />
-                        <TableColumn prefWidth="175.9999771118164" text="Tên sách " />
-                        <TableColumn prefWidth="157.60003662109375" text="Tác Giả" />
-                        <TableColumn minWidth="8.800048828125" prefWidth="205.60000610351562" text="Nhà xuất bản " />
-                        <TableColumn minWidth="0.0" prefWidth="127.199951171875" text="Thể loại" />
+                        <TableColumn prefWidth="107.99999469518661" text="Mã độc giả " />
+                        <TableColumn prefWidth="159.20003509521484" text="Tên đọc giả " />
+                        <TableColumn prefWidth="157.60003662109375" text="Email" />
+                        <TableColumn minWidth="8.800048828125" prefWidth="205.60000610351562" text="Số điện thoại " />
+                        <TableColumn minWidth="0.0" prefWidth="127.199951171875" text="Ngày đăng ký " />
                     </columns>
                 </TableView>
             </content>
