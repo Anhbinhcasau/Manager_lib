@@ -1,14 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.quanlithuvien.Add_Book"
-            prefHeight="400.0" prefWidth="600.0">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlithuvien.Add_Book">
+    <children>
+        <Label layoutX="33.0" layoutY="37.0" prefHeight="27.0" prefWidth="175.0" text="Thông tin sách : ">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Label>
+        <Button layoutX="162.0" layoutY="286.0" mnemonicParsing="false" text="Thêm sách" />
+        <Label layoutX="39.0" layoutY="92.0" prefHeight="18.0" prefWidth="68.0" text="Mã sách ">
+         <font>
+            <Font size="13.0" />
+         </font></Label>
+        <Label layoutX="39.0" layoutY="138.0" prefHeight="18.0" prefWidth="68.0" text="Tên sách " />
+        <Label layoutX="42.0" layoutY="177.0" prefHeight="18.0" prefWidth="73.0" text="Tác giả" />
+        <Label layoutX="37.0" layoutY="251.0" text="Thể loại" />
+        <Label layoutX="33.0" layoutY="213.0" prefHeight="18.0" prefWidth="80.0" text="Nhà xuất bản" />
+        <TextField layoutX="158.0" layoutY="88.0" prefHeight="26.0" prefWidth="175.0" />
+        <ScrollPane layoutY="342.0" prefHeight="230.0" prefWidth="772.0">
+            <content>
+                <TableView prefHeight="238.0" prefWidth="770.0">
+                    <columns>
+                        <TableColumn prefWidth="107.99999469518661" text="Mã sách" />
+                        <TableColumn prefWidth="159.20003509521484" text="Tên sách" />
+                        <TableColumn prefWidth="157.60003662109375" text="Tác giả" />
+                        <TableColumn minWidth="8.800048828125" prefWidth="205.60000610351562" text="Nhà xuất bản " />
+                        <TableColumn minWidth="0.0" prefWidth="127.199951171875" text="Thể loại" />
+                    </columns>
+                </TableView>
+            </content>
+        </ScrollPane>
+        <Label layoutX="364.0" layoutY="51.0" text="Tìm kiếm sách : ">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Label>
+        <Label layoutX="364.0" layoutY="92.0" text="Thông tin tìm kiếm " />
+        <TextField layoutX="481.0" layoutY="88.0" prefHeight="26.0" prefWidth="175.0" />
+        <Button layoutX="487.0" layoutY="135.0" mnemonicParsing="false" text="Tìm kiếm " />
+      <TextField layoutX="158.0" layoutY="134.0" prefHeight="26.0" prefWidth="175.0" />
+      <TextField layoutX="158.0" layoutY="173.0" prefHeight="26.0" prefWidth="175.0" />
+      <ChoiceBox layoutX="158.0" layoutY="209.0" prefHeight="26.0" prefWidth="175.0" />
+      <ChoiceBox layoutX="158.0" layoutY="246.0" prefHeight="26.0" prefWidth="175.0" />
+    </children>
 
 </AnchorPane>
