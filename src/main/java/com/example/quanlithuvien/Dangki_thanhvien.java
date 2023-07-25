@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class Add_Book extends Application {
+public class Dangki_thanhvien extends Application {
 
     public static void main(String[] args) {
         launch(args);
@@ -16,11 +16,10 @@ public class Add_Book extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Home.class.getResource("add_book.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Home.class.getResource("dangki_thanhvien.fxml"));
         AnchorPane root = fxmlLoader.load();
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
-        primaryStage.setTitle("Thêm sách mới !");
         primaryStage.show();
     }
 }
