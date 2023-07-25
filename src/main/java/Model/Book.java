@@ -1,10 +1,10 @@
 package Model;
 
 public class Book {
-    int MaSach;
+    String MaSach;
     String TenSach;
 
-    public Book(int maSach, String tenSach) {
+    public Book(String maSach, String tenSach) {
         MaSach = maSach;
         TenSach = tenSach;
     }
@@ -12,11 +12,11 @@ public class Book {
     public Book() {
     }
 
-    public int getMaSach() {
+    public String getMaSach() {
         return MaSach;
     }
 
-    public void setMaSach(int maSach) {
+    public void setMaSach(String maSach) {
         MaSach = maSach;
     }
 
