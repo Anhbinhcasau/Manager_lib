@@ -22,6 +22,7 @@ public class Manager_DocGia extends Application {
         AnchorPane root = fxmlLoader.load();
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
+        primaryStage.setTitle("Quản lý độc giả !");
         primaryStage.show();
     }
 }
