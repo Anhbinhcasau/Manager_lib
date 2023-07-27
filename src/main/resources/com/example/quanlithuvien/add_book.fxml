@@ -10,14 +10,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlithuvien.Add_Book">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlithuvien.BookController">
     <children>
         <Label layoutX="33.0" layoutY="37.0" prefHeight="27.0" prefWidth="175.0" text="Thông tin sách : ">
             <font>
                 <Font name="System Bold" size="18.0" />
             </font>
         </Label>
-        <Button layoutX="162.0" layoutY="286.0" mnemonicParsing="false" text="Thêm sách" />
+        <Button fx:id="btThem" layoutX="270.0" layoutY="310.0" mnemonicParsing="false" onAction="#btThemSach" text="Thêm sách" />
         <Label layoutX="39.0" layoutY="92.0" prefHeight="18.0" prefWidth="68.0" text="Mã sách ">
          <font>
             <Font size="13.0" />
@@ -26,16 +26,17 @@
         <Label layoutX="42.0" layoutY="177.0" prefHeight="18.0" prefWidth="73.0" text="Tác giả" />
         <Label layoutX="37.0" layoutY="251.0" text="Thể loại" />
         <Label layoutX="33.0" layoutY="213.0" prefHeight="18.0" prefWidth="80.0" text="Nhà xuất bản" />
-        <TextField layoutX="158.0" layoutY="88.0" prefHeight="26.0" prefWidth="175.0" />
-        <ScrollPane layoutY="342.0" prefHeight="230.0" prefWidth="772.0">
+        <TextField fx:id="textMaSach" layoutX="158.0" layoutY="88.0" prefHeight="26.0" prefWidth="175.0" />
+        <ScrollPane fx:id="spSach" layoutY="342.0" prefHeight="230.0" prefWidth="772.0">
             <content>
-                <TableView prefHeight="238.0" prefWidth="770.0">
+                <TableView fx:id="tbSach" prefHeight="238.0" prefWidth="770.0">
                     <columns>
-                        <TableColumn prefWidth="107.99999469518661" text="Mã sách" />
-                        <TableColumn prefWidth="159.20003509521484" text="Tên sách" />
-                        <TableColumn prefWidth="157.60003662109375" text="Tác giả" />
-                        <TableColumn minWidth="8.800048828125" prefWidth="205.60000610351562" text="Nhà xuất bản " />
-                        <TableColumn minWidth="0.0" prefWidth="127.199951171875" text="Thể loại" />
+                        <TableColumn fx:id="ClumMaSach" prefWidth="107.99999469518661" text="Mã sách" />
+                        <TableColumn fx:id="ClTenSach" prefWidth="159.20003509521484" text="Tên sách" />
+                        <TableColumn fx:id="ClTacGia" prefWidth="157.60003662109375" text="Tác giả" />
+                        <TableColumn fx:id="ClNXB" minWidth="8.800048828125" prefWidth="127.99990844726562" text="Nhà xuất bản " />
+                        <TableColumn fx:id="ClTheLoai" minWidth="0.0" prefWidth="124.7999267578125" text="Thể loại" />
+                  <TableColumn fx:id="ClSoLuong" prefWidth="75.0" text="Số lượng " />
                     </columns>
                 </TableView>
             </content>
@@ -48,10 +49,12 @@
         <Label layoutX="364.0" layoutY="92.0" text="Thông tin tìm kiếm " />
         <TextField layoutX="481.0" layoutY="88.0" prefHeight="26.0" prefWidth="175.0" />
         <Button layoutX="487.0" layoutY="135.0" mnemonicParsing="false" text="Tìm kiếm " />
-      <TextField layoutX="158.0" layoutY="134.0" prefHeight="26.0" prefWidth="175.0" />
-      <TextField layoutX="158.0" layoutY="173.0" prefHeight="26.0" prefWidth="175.0" />
-      <ChoiceBox layoutX="158.0" layoutY="209.0" prefHeight="26.0" prefWidth="175.0" />
-      <ChoiceBox layoutX="158.0" layoutY="246.0" prefHeight="26.0" prefWidth="175.0" />
+      <TextField fx:id="textTenSach" layoutX="158.0" layoutY="134.0" prefHeight="26.0" prefWidth="175.0" />
+      <TextField fx:id="textTacGia" layoutX="158.0" layoutY="173.0" prefHeight="26.0" prefWidth="175.0" />
+      <ChoiceBox fx:id="cbTheLoai" layoutX="158.0" layoutY="246.0" prefHeight="26.0" prefWidth="175.0" />
+      <TextField fx:id="textNXB" layoutX="158.0" layoutY="209.0" prefHeight="26.0" prefWidth="175.0" />
+      <Label layoutX="37.0" layoutY="286.0" text="Số lượng" />
+      <TextField fx:id="textSoLuong" layoutX="158.0" layoutY="281.0" prefHeight="26.0" prefWidth="175.0" />
     </children>
 
 </AnchorPane>
