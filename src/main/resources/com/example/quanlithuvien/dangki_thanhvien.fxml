@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="472.0" prefWidth="541.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlithuvien.Dangki_thanhvien">
+<AnchorPane prefHeight="472.0" prefWidth="541.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlithuvien.Dangki_thanhvien_Controller">
    <children>
       <Label layoutX="133.0" layoutY="64.0" text="Thông tin đăng ký thành viên ">
          <font>
@@ -20,15 +19,15 @@
       <Label layoutX="133.0" layoutY="254.0" text="Email" />
       <Label layoutX="124.0" layoutY="172.0" text="Tên độc giả" />
       <Label layoutX="120.0" layoutY="214.0" text="Số điện thoại" />
-      <Label layoutX="126.0" layoutY="325.0" text="Đối tượng " />
-      <ChoiceBox fx:id="mychoicebox" layoutX="251.0" layoutY="321.0" prefWidth="150.0" />
-      <TextField layoutX="252.0" layoutY="131.0" />
-      <TextField layoutX="252.0" layoutY="168.0" />
-      <TextField layoutX="252.0" layoutY="210.0" />
-      <TextField layoutX="252.0" layoutY="250.0" />
+      <Label layoutX="126.0" layoutY="325.0" text="Khoa" />
+      <ChoiceBox fx:id="choiceKhoa" layoutX="251.0" layoutY="321.0" prefWidth="150.0" />
+      <TextField fx:id="textMaDocGia" layoutX="252.0" layoutY="131.0" prefHeight="26.0" prefWidth="166.0" />
+      <TextField fx:id="textTenDG" layoutX="252.0" layoutY="168.0" prefHeight="26.0" prefWidth="166.0" />
+      <TextField fx:id="textSDT" layoutX="252.0" layoutY="210.0" prefHeight="26.0" prefWidth="166.0" />
+      <TextField fx:id="textEmail" layoutX="252.0" layoutY="250.0" prefHeight="26.0" prefWidth="166.0" />
       <Label layoutX="124.0" layoutY="290.0" text="Giới tính" />
-      <RadioButton layoutX="257.0" layoutY="290.0" mnemonicParsing="false" text="Nam" />
-      <RadioButton layoutX="357.0" layoutY="290.0" mnemonicParsing="false" text="Nữ" />
+      <RadioButton fx:id="radiobtNam" layoutX="257.0" layoutY="290.0" mnemonicParsing="false" text="Nam" />
+      <RadioButton fx:id="radiobtNu" layoutX="357.0" layoutY="290.0" mnemonicParsing="false" text="Nữ" />
       <Button layoutX="255.0" layoutY="389.0" mnemonicParsing="false" text="Trở lại" />
       <Button layoutX="350.0" layoutY="389.0" mnemonicParsing="false" text="Đăng ký" />
    </children>

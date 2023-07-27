@@ -1,7 +1,7 @@
 package Model;
 
 public class TheLoai {
-    public   Integer idTheLoai;
+    public Integer idTheLoai;
     public String tenTheLoai;
 
     public TheLoai() {
@@ -9,6 +9,10 @@ public class TheLoai {
 
     public TheLoai(Integer idTheLoai, String tenTheLoai) {
         this.idTheLoai = idTheLoai;
+        this.tenTheLoai = tenTheLoai;
+    }
+
+    public TheLoai(String tenTheLoai){
         this.tenTheLoai = tenTheLoai;
     }
 
