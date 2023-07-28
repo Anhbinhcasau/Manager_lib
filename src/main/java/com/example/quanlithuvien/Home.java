@@ -11,18 +11,17 @@ import java.io.IOException;
 
 public class Home extends Application {
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Home.class.getResource("home.fxml"));
-        stage.initStyle(StageStyle.TRANSPARENT);
-        AnchorPane root = fxmlLoader.load();
-        Scene scene = new Scene(root);
-        stage.setTitle("Manager!");
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("home.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+
         stage.setScene(scene);
         stage.show();
+    }
+    public static void main(String[] args) {
+        launch(args);
     }
 }

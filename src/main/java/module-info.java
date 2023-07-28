@@ -9,5 +9,9 @@ module com.example.quanlithuvien {
     requires java.sql;
 
     opens com.example.quanlithuvien to javafx.fxml;
+    opens Model to javafx.base;
+
     exports com.example.quanlithuvien;
+
+
 }
