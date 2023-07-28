@@ -24,7 +24,7 @@
       <ChoiceBox fx:id="mychoicebox" layoutX="251.0" layoutY="321.0" prefWidth="150.0" />
       <TextField layoutX="252.0" layoutY="131.0" />
       <TextField layoutX="252.0" layoutY="168.0" />
-      <TextField layoutX="252.0" layoutY="210.0" />
+      <TextField layoutX="252.0" layoutY="210.0 " />
       <TextField layoutX="252.0" layoutY="250.0" />
       <Label layoutX="124.0" layoutY="290.0" text="Giới tính" />
       <RadioButton layoutX="257.0" layoutY="290.0" mnemonicParsing="false" text="Nam" />
