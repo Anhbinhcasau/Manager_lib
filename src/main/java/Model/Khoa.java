@@ -11,16 +11,10 @@ public class Khoa {
     public Khoa() {
 
     }
-    @Override
-    public String toString() {
-        return "Khoa{" +
-                "maKhoa='" + maKhoa + '\'' +
-                ", tenKhoa='" + tenKhoa + '\'' +
-                '}';
+
+    public Khoa(String tenKhoa) {
+        this.tenKhoa=tenKhoa;
     }
-
-
-
 
     public Integer getMaKhoa() {
         return maKhoa;
