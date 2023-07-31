@@ -1,6 +1,7 @@
 package com.example.quanlithuvien;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -22,7 +23,9 @@ public class Manager_DocGia extends Application {
         AnchorPane root = fxmlLoader.load();
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
-        primaryStage.setTitle("Quản lý độc giả !");
+        primaryStage.setTitle("Quản lý thẻ !");
         primaryStage.show();
     }
+
+
 }
