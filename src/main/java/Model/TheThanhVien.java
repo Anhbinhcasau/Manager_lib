@@ -1,6 +1,10 @@
 package Model;
 
 public class TheThanhVien {
+    public TheThanhVien() {
+
+    }
+
     @Override
     public String toString() {
         return "TheThanhVien{" +
@@ -17,9 +21,9 @@ public class TheThanhVien {
     private String tenDocGia;
     private String soDienThoai;
     private String email;
-    private int gioiTinh;
+    private String gioiTinh;
     private String khoa;
-    public TheThanhVien(String maDocGia, String tenDocGia, String soDienThoai, String email, int gioiTinh, String khoa) {
+    public TheThanhVien(String maDocGia, String tenDocGia, String soDienThoai, String email, String gioiTinh, String khoa) {
         this.maDocGia = maDocGia;
         this.tenDocGia = tenDocGia;
         this.soDienThoai = soDienThoai;
@@ -60,11 +64,11 @@ public class TheThanhVien {
         this.email = email;
     }
 
-    public int getGioiTinh() {
+    public String getGioiTinh() {
         return gioiTinh;
     }
 
-    public void setGioiTinh(int gioiTinh) {
+    public void setGioiTinh(String gioiTinh) {
         this.gioiTinh = gioiTinh;
     }
 

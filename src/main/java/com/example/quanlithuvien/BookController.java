@@ -59,9 +59,7 @@ public class BookController implements Initializable {
             ConnectDatabase data = new ConnectDatabase();
             Connection connection = data.getConnection();
 
-            String selectSql = "SELECT tenTheLoai FROM theloai";
-            PreparedStatement selectStmt = connection.prepareStatement(selectSql);
-            ResultSet rs = selectStmt.executeQuery();
+
 
             Book book = new Book();
             book.setMaSach(masach);
@@ -113,21 +111,18 @@ public class BookController implements Initializable {
         Connection connection = data.getConnection();
 
         String selectSql = "SELECT tenTheLoai FROM theloai";
-
         PreparedStatement selectStmt = connection.prepareStatement(selectSql);
         ResultSet rs = selectStmt.executeQuery();
-
-
         // Thêm các thể loại sách vào ChoiceBox
 
         while (rs.next()) {
-
             String tenTheLoai = rs.getString("tenTheLoai");
-
             TheLoai theLoai = new TheLoai(tenTheLoai);
             theLoaiList.add(theLoai);
+
         }
         cbTheLoai.getItems().addAll(theLoaiList);
+
             for (TheLoai theLoai : theLoaiList) {
                 items.add(theLoai.getTenTheLoai());
             }
