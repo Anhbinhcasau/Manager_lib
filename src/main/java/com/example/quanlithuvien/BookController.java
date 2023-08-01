@@ -14,7 +14,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
+import java.io.File;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
@@ -50,6 +53,8 @@ public class BookController implements Initializable {
     private TableColumn<Book,String > ClTheLoai;
     @FXML
     private TableColumn<Book,String > ClSoLuong;
+
+    @FXML private ImageView imageView1;
 
     ObservableList<Book>  bookList= FXCollections.observableArrayList();
 
@@ -106,6 +111,10 @@ public class BookController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+//        Load the image from a file
+//        File image = new File("img/iconBook.png");
+//        Image image1 = new Image(image.toURI().toString());
+//        imageView1.setImage(image1);
         try{
         ConnectDatabase data = new ConnectDatabase();
         Connection connection = data.getConnection();
@@ -143,7 +152,7 @@ public class BookController implements Initializable {
 
             while(rs1.next()){
                 String idSach=rs1.getString("idSach");
-//                System.out.println(idSach);
+                //System.out.println(idSach);
                 String tenSach=rs1.getString("TenSach");
                 String tacgia=rs1.getString("TacGia");
                 String nxb=rs1.getString("NhaXuatBan");
