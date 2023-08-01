@@ -70,6 +70,6 @@
       </MenuBar>
       <Label layoutX="57.0" layoutY="233.0" text="Tình trạng" />
       <TextField fx:id="textTinhTrang" layoutX="160.0" layoutY="229.0" prefHeight="26.0" prefWidth="175.0" />
-      <Label fx:id="erroMaDG" layoutX="158.0" layoutY="115.0" prefHeight="18.0" prefWidth="175.0" />
+      <Label visible="false" text="Mã độc giả không hợp lệ" fx:id="erroMaDG" layoutX="158.0" layoutY="115.0" prefHeight="18.0" prefWidth="175.0" />
     </children>
 </AnchorPane>
