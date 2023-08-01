@@ -62,8 +62,6 @@ public class Mangaer_Kichhoat_Controller extends Parent implements Initializable
         String formatnkt = localDateHH.format(formatter);
         //Kiểm tra mã sinh viên
 
-
-
          Label erroMaDG = new Label("Mã độc giả không hợp lệ");
         erroMaDG.setTextFill(Color.RED);
         textMaDocGia.textProperty().addListener((observable, oldValue, newValue) -> {
