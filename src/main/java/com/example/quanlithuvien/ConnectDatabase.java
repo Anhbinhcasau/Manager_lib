@@ -11,8 +11,8 @@ public class ConnectDatabase {
     public Connection getConnection(){
         String databaseName="thuvien";
         String dataUser="root" ;
-        String dataPassword="Ha15102003@";
-        String url="jdbc:mysql://localhost/" + databaseName;
+        String dataPassword="cangimatkhau1";
+        String url="jdbc:mysql://127.0.0.1:3306/" + databaseName;
 
         try
         {

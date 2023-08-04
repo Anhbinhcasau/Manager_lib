@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlithuvien.PhieuMuonTra.PhieuMuonTraView">
+    <children>
+        <VBox layoutX="30.0" layoutY="20.0" spacing="10">
+            <Label text="Thông tin phiếu mượn:">
+                <font>
+                    <Font name="System Bold" size="14.0" />
+                </font>
+            </Label>
+            <HBox spacing="10">
+                <VBox spacing="5">
+                    <Label text="Chọn sách:" />
+                    <ComboBox fx:id="cbSach" prefWidth="175.0" />
+                </VBox>
+                <VBox spacing="5">
+                    <Label text="Số lượng sách:" />
+                    <TextField fx:id="tfSoLuong" prefHeight="26.0" prefWidth="175.0" />
+                </VBox>
+                <Button onAction="#btThemSach" text="Thêm sách" />
+            </HBox>
+            <HBox spacing="10">
+                <VBox spacing="5">
+                    <Label text="Ngày mượn:" />
+                    <DatePicker fx:id="dateNgayMuon" prefWidth="182.0" />
+                </VBox>
+                <VBox spacing="5">
+                    <Label text="Ngày trả:" />
+                    <DatePicker fx:id="dateNgayTra" prefWidth="182.0" />
+                </VBox>
+                <VBox spacing="5">
+                    <Label text="Mã độc giả:" />
+                    <TextField fx:id="textMaDocGia" prefHeight="26.0" prefWidth="175.0" />
+                </VBox>
+                <Button onAction="#btTaoPhieuMuon" prefHeight="26.0" prefWidth="107.0" text="Tạo phiếu mượn" />
+            </HBox>
+            <ListView fx:id="lvDanhSachSach" prefHeight="211.0" prefWidth="300.0" />
+        </VBox>
+
+        <!-- Bảng thông tin phiếu mượn -->
+        <TableView fx:id="tbThe" layoutY="401.0" prefHeight="184.0" prefWidth="770.0">
+            <columns>
+                <TableColumn fx:id="ClMaPhieu" prefWidth="100.0" text="Mã phiếu" />
+                <TableColumn fx:id="ClMaDG" prefWidth="100.0" text="Mã độc giả" />
+                <TableColumn fx:id="ClNgayMuon" prefWidth="150.0" text="Ngày mượn" />
+                <TableColumn fx:id="ClNgayTra" prefWidth="125.0" text="Ngày trả" />
+                <TableColumn fx:id="ClTinhTrang" minWidth="0.0" prefWidth="145.39996337890625" text="Tình trạng" />
+                <TableColumn fx:id="ClSachMaSach" prefWidth="100.0" text="Mã sách" />
+            </columns>
+        </TableView>
+
+
+        <!-- Thông báo lỗi -->
+        <Label fx:id="errorMaDG" layoutY="220.0" prefWidth="175.0" text="Mã độc giả không hợp lệ" visible="false" />
+        <Button layoutX="160.0" layoutY="350.0" mnemonicParsing="false" onAction="#xoaSach" prefHeight="26.0" prefWidth="80.0" text="Xóa sách" />
+
+        <!-- Nút "Xóa phiếu mượn trả" -->
+        <Button layoutX="260.0" layoutY="350.0" mnemonicParsing="false" onAction="#xoaPhieuMuon" prefHeight="26.0" prefWidth="120.0" text="Xóa phiếu mượn trả" />
+
+        <!-- Nút "Đã trả" -->
+        <Button layoutX="400.0" layoutY="350.0" mnemonicParsing="false" onAction="#daTraSach" prefHeight="26.0" prefWidth="80.0" text="Đã trả" />
+
+        <!-- Nút "Chỉnh sửa sách" -->
+        <Button layoutX="500.0" layoutY="350.0" mnemonicParsing="false" onAction="#chinhSuaSach" prefHeight="26.0" prefWidth="120.0" text="Chỉnh sửa sách" />
+    </children>
+</AnchorPane>

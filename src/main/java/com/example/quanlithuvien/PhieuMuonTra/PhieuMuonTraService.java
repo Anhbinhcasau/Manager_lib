@@ -1,5 +1,6 @@
 package com.example.quanlithuvien.PhieuMuonTra;
 
+import Model.LichSuMuonSach;
 import Model.PhieuMuonTra;
 import com.example.quanlithuvien.Books.BooksService;
 
@@ -8,7 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Map;
+import java.util.*;
 
 public class PhieuMuonTraService {
     private Connection connection;
@@ -88,5 +89,98 @@ public class PhieuMuonTraService {
             e.printStackTrace();
         }
     }
+
+    public List<PhieuMuonTra> listPhieuMuonTra() {
+        String query = "SELECT * FROM phieumuontra";
+        String queryGetListBook = "SELECT pm.maPhieuMuonTra, sm.soLuongMuon, s.tenSach " +
+                "FROM sachmuon sm " +
+                "JOIN phieumuontra pm ON sm.phieuMuon = pm.maPhieuMuonTra " +
+                "JOIN book s ON sm.idSach = s.idSach";
+
+        List<PhieuMuonTra> phieuMuonTraList = new ArrayList<>();
+        HashMap<String, HashMap<String, Integer>> getListBookRent = new HashMap<>();
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            PreparedStatement statementForGetListBookRent = connection.prepareStatement(queryGetListBook);
+            ResultSet dataOutputForListBookRent = statementForGetListBookRent.executeQuery();
+            while(dataOutputForListBookRent.next()){
+                String maPhieuMuonTra = dataOutputForListBookRent.getString("maPhieuMuonTra");
+                String tenSach = dataOutputForListBookRent.getString("tenSach");
+                int soLuongMuon = dataOutputForListBookRent.getInt("soLuongMuon");
+
+                if (getListBookRent.containsKey(maPhieuMuonTra)) {
+                    HashMap<String, Integer> sachInfo = getListBookRent.get(maPhieuMuonTra);
+                    sachInfo.put(tenSach, soLuongMuon);
+                } else {
+                    HashMap<String, Integer> sachInfo = new HashMap<>();
+                    sachInfo.put(tenSach, soLuongMuon);
+                    getListBookRent.put(maPhieuMuonTra, sachInfo);
+                }
+            }
+            ResultSet queryOutput = statement.executeQuery();
+            while (queryOutput.next()) {
+                String idPhieu = queryOutput.getString("maPhieuMuonTra");
+                Date ngayMuon = queryOutput.getDate("NgayMuon");
+                Date ngayTra = queryOutput.getDate("NgayTra");
+                String maDocGia = queryOutput.getString("maDocGia");
+                Boolean trangThai = queryOutput.getBoolean("trangThai");
+                HashMap<String, Integer> sachInfo = getListBookRent.get(idPhieu);
+                PhieuMuonTra phieuMuonTra = new PhieuMuonTra(idPhieu, maDocGia, ngayMuon, ngayTra, sachInfo, trangThai);
+                phieuMuonTraList.add(phieuMuonTra);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return phieuMuonTraList;
+    }
+    public List<LichSuMuonSach> listPhieuMuonTraByMaDocGia(String maDocGia) {
+        String query = "SELECT pm.*, sm.soLuongMuon, s.tenSach " +
+                "FROM phieumuontra pm " +
+                "JOIN sachmuon sm ON pm.maPhieuMuonTra = sm.phieuMuon " +
+                "JOIN book s ON sm.idSach = s.idSach " +
+                "WHERE pm.maDocGia = ?";
+
+        List<LichSuMuonSach> phieuMuonTraList = new ArrayList<>();
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, maDocGia);
+
+            ResultSet queryOutput = statement.executeQuery();
+            while (queryOutput.next()) {
+                String maPhieuMuonTra = queryOutput.getString("maPhieuMuonTra");
+                Date ngayMuon = queryOutput.getDate("NgayMuon");
+                Date ngayTra = queryOutput.getDate("NgayTra");
+                Boolean trangThai = queryOutput.getBoolean("trangThai");
+                String tenSachMuon = queryOutput.getString("tenSach");
+                int soLuongMuon = queryOutput.getInt("soLuongMuon");
+                LichSuMuonSach lichSuMuonSach = new LichSuMuonSach(ngayMuon, ngayTra, tenSachMuon, soLuongMuon,tenSachMuon ,trangThai);
+                phieuMuonTraList.add(lichSuMuonSach);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return phieuMuonTraList;
+    }
+
+    public void xoaPhieuMuonTra(String maPhieuMuonTra) {
+        String deleteQuery = "DELETE FROM phieumuontra WHERE maPhieuMuonTra = ?";
+        String deleteRentBooksQuery = "DELETE FROM sachmuon WHERE phieuMuon = ?";
+
+        try (PreparedStatement deleteStatement = connection.prepareStatement(deleteQuery);
+             PreparedStatement deleteRentBooksStatement = connection.prepareStatement(deleteRentBooksQuery)) {
+
+            // Xóa dữ liệu trong bảng sachmuon trước để không vi phạm khóa ngoại
+            deleteRentBooksStatement.setString(1, maPhieuMuonTra);
+            deleteRentBooksStatement.executeUpdate();
+
+            // Xóa dữ liệu trong bảng phieumuontra
+            deleteStatement.setString(1, maPhieuMuonTra);
+            deleteStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }
