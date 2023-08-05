@@ -12,6 +12,8 @@ module com.example.quanlithuvien {
     opens Model to javafx.base;
 
     exports com.example.quanlithuvien;
+    exports com.example.quanlithuvien.PhieuMuonTra;
+
 
 
 }

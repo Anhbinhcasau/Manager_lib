@@ -1,21 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" prefHeight="274.0" prefWidth="330.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlithuvien.HelloController">
+<VBox alignment="CENTER" prefHeight="375.0" prefWidth="438.0" spacing="20.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlithuvien.HelloController">
   <padding>
     <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
   </padding>
-   <Label text="Label" />
-   <TextField fx:id="hung" />
-
-  <Label fx:id="welcomeText" />
-  <Button onAction="#btHung" text="Hello!" />
-   <TableView prefHeight="200.0" prefWidth="200.0">
-     <columns>
-       <TableColumn prefWidth="75.0" text="hùng " />
-     </columns>
-   </TableView>
+   <Label prefHeight="35.0" prefWidth="110.0" text="Quản lí thư viện" textAlignment="CENTER" textFill="#b71717" />
+  <Button onAction="#btnDKThanhVien" prefHeight="44.0" prefWidth="161.0" text="Đăng kí thành viên " />
+   <Button mnemonicParsing="false" onAction="#btnQuanlisach" prefHeight="44.0" prefWidth="165.0" text="Quản lí sách " />
+   <Button mnemonicParsing="false" onAction="#btnQuanlimuontra" prefHeight="43.0" prefWidth="172.0" text="Quản lí mượn trả" />
+   <Button mnemonicParsing="false" onAction="#btnQuanlythe" prefHeight="41.0" prefWidth="176.0" text="Quản lí thẻ" />
 </VBox>

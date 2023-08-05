@@ -44,8 +44,8 @@ public class Mangaer_Kichhoat_Controller extends Parent implements Initializable
     private TableColumn<TheLoai,String  > ClTinhTrang;
     @FXML
     private TableView<KichHoat> tbThe;
-//    @FXML
-//    private Label erroMaDG;
+    @FXML
+    private Label erroMaDG;
     ObservableList<KichHoat> listTheTV= FXCollections.observableArrayList();
 
     String tenDG;
@@ -62,34 +62,30 @@ public class Mangaer_Kichhoat_Controller extends Parent implements Initializable
         String formatnkt = localDateHH.format(formatter);
         //Kiểm tra mã sinh viên
 
-         Label erroMaDG = new Label("Mã độc giả không hợp lệ");
-        erroMaDG.setTextFill(Color.RED);
-        textMaDocGia.textProperty().addListener((observable, oldValue, newValue) -> {
-            String selectTTV = "SELECT maDocGia FROM thethanhvien";
+        String checkIdExistInTheThanhVien = "SELECT * FROM thethanhvien WHERE maDocGia = ?";
+        //Query kiểm tra maDocGia co ton tai trong bang thethanhvien
 
-            try {
-                PreparedStatement statement = connection.prepareStatement(selectTTV);
-                ResultSet kh = statement.executeQuery();
-                boolean hasError = false;
-                while (kh.next()) {
-                    String madg = kh.getString("maDocGia");
-                    if (!textMaDocGia.getText().equals(madg) ) {
-                        Label errorMaDG = (Label) textMaDocGia.getParent().lookup("#errorMaDG");
-                        if (errorMaDG == null) {
-                            errorMaDG = new Label("Mã độc giả không hợp lệ");
-                            errorMaDG.setId("errorMaDG");
-                            errorMaDG.setTextFill(Color.RED);
-                            textMaDocGia.getParent().getChildrenUnmodifiable().add(errorMaDG);
-                        }
-                    }
-                    KichHoat(textMaDocGia.getText(),formatnkh,formatnkt,textTinhTrang.getText());
+        try {
+            PreparedStatement statement = connection.prepareStatement(checkIdExistInTheThanhVien);
+            statement.setString(1, textMaDocGia.getText());
+            ResultSet kh = statement.executeQuery();
+            while (kh.next()) {
+                String madg = kh.getString("maDocGia");
+                System.out.println("madg");
+                if (textMaDocGia.getText().equals(madg)) {
+                    System.out.println("Đăng ký thành công");
+                    KichHoat(textMaDocGia.getText(), formatnkh, formatnkt, textTinhTrang.getText());
+                    erroMaDG.setVisible(false);
+                    return;
                 }
-            } catch (SQLException e) {
-                e.printStackTrace();
             }
-        });
+                System.out.println("Sai ma doc gia");
+                erroMaDG.setTextFill(Color.RED);
+                erroMaDG.setVisible(true);
 
-
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -119,15 +115,10 @@ public class Mangaer_Kichhoat_Controller extends Parent implements Initializable
             ResultSet kh = statement.executeQuery();
 
             while (kh.next()) {
-
                 String madg = kh.getString("maDocGia");
                 String tendg=kh.getString("tenDocGia");
-                if( MaDG.equals(madg))
-                tenDG=tendg;
-
-
+                if(MaDG.equals(madg)) this.tenDG=tendg;
             }
-            System.out.println(tenDG);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
