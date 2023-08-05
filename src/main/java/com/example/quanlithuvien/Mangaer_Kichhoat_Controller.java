@@ -97,6 +97,8 @@ public class Mangaer_Kichhoat_Controller extends Parent implements Initializable
         kh.setNgayHetHan(ngayhethan);
         kh.setTinhTrang(tinhtrang);
 
+
+
         String insertKH="insert into kichhoat(maDocGia,tenDocGia,ngayKichHoat,ngayHetHan,tinhTrang) values (?,?,?,?,?)";
         PreparedStatement statement=connection.prepareStatement(insertKH);
         statement.setString(1,kh.getMaDocGia());
@@ -105,6 +107,18 @@ public class Mangaer_Kichhoat_Controller extends Parent implements Initializable
         statement.setString(4,  kh.getNgayHetHan());
         statement.setString(5,kh.getTinhTrang());
         statement.executeUpdate();
+        //////////////////////////////
+        String query = "UPDATE thethanhvien SET TinhTrangThe =  ? WHERE maDocGia = ?";
+        try {
+            PreparedStatement statement1 = connection.prepareStatement(query);
+            statement1.setString(1, "Đã kích hoạt");
+            statement1.setString(2, maDocGia);
+            statement1.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println("Lỗi updateBook: " + e.getMessage());
+            e.printStackTrace();
+        }
 
     }
 

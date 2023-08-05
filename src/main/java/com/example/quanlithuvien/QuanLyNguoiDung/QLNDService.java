@@ -31,8 +31,9 @@ public class QLNDService {
                 String email = resultSet.getString("email");
                 String gioTinh = resultSet.getString("gioiTinh");
                 String khoa = resultSet.getString("khoa");
+                String ttt=resultSet.getString("TinhTrangThe");
 
-                TheThanhVien nguoiDung = new TheThanhVien(maThe, hoTen, soDienThoai, email, gioTinh, khoa);
+                TheThanhVien nguoiDung = new TheThanhVien(maThe, hoTen, soDienThoai, email, gioTinh, khoa,ttt);
                 nguoiDungList.add(nguoiDung);
             }
         } catch (SQLException e) {

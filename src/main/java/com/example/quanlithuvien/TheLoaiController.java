@@ -112,8 +112,6 @@ public class TheLoaiController implements Initializable {
             statement.setString(1, theLoai.getTenTheLoai());
             statement.executeUpdate();
 
-
-
             theLoaiObservableList.add(theLoai);
             tableTheLoai.refresh();
 
