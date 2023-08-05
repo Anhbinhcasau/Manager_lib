@@ -13,7 +13,8 @@ module com.example.quanlithuvien {
 
     exports com.example.quanlithuvien;
     exports com.example.quanlithuvien.PhieuMuonTra;
-
-
+    exports com.example.quanlithuvien.QuanLyNguoiDung;
+    opens com.example.quanlithuvien.PhieuMuonTra to javafx.fxml;
+    opens com.example.quanlithuvien.QuanLyNguoiDung to javafx.fxml;
 
 }

@@ -32,6 +32,11 @@ public class Book {
         this.soLuong = soLuong;
     }
 
+    public Book(String idSach, String tenSach){
+        this.idSach = idSach;
+        this.tenSach = tenSach;
+    }
+
     public String getMaSach() {
         return idSach;
     }
