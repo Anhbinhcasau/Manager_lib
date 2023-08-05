@@ -52,11 +52,12 @@ public class Dangki_thanhvien_Controller implements Initializable {
         theThanhVien.setEmail(email);
         theThanhVien.setGioiTinh(gioitinh);
         theThanhVien.setKhoa(khoa);
+        theThanhVien.setTinhTrangThe("Chưa kích hoạt");
         ////Chọn giói tính
 
 
 
-        String insertTV="insert into thethanhvien(maDocGia,tenDocGia,soDienThoai,email,gioiTinh,khoa) values (?,?,?,?,?,?)";
+        String insertTV="insert into thethanhvien(maDocGia,tenDocGia,soDienThoai,email,gioiTinh,khoa,TinhTrangThe) values (?,?,?,?,?,?,?)";
         PreparedStatement statement=connection.prepareStatement(insertTV);
         statement.setString(1,theThanhVien.getMaDocGia());
         statement.setString(2,theThanhVien.getTenDocGia());
@@ -64,6 +65,7 @@ public class Dangki_thanhvien_Controller implements Initializable {
         statement.setString(4,theThanhVien.getEmail());
         statement.setString(5,theThanhVien.getGioiTinh());
         statement.setString(6,theThanhVien.getKhoa());
+        statement.setString(7,theThanhVien.getTinhTrangThe());
 
         statement.executeUpdate();
 

@@ -23,6 +23,26 @@ public class TheThanhVien {
     private String email;
     private String gioiTinh;
     private String khoa;
+    private String tinhTrangThe;
+
+    public String getTinhTrangThe() {
+        return tinhTrangThe;
+    }
+
+    public void setTinhTrangThe(String tinhTrangThe) {
+        this.tinhTrangThe = tinhTrangThe;
+    }
+
+    public TheThanhVien(String maDocGia, String tenDocGia, String soDienThoai, String email, String gioiTinh, String khoa, String tinhTrangThe) {
+        this.maDocGia = maDocGia;
+        this.tenDocGia = tenDocGia;
+        this.soDienThoai = soDienThoai;
+        this.email = email;
+        this.gioiTinh = gioiTinh;
+        this.khoa = khoa;
+        this.tinhTrangThe = tinhTrangThe;
+    }
+
     public TheThanhVien(String maDocGia, String tenDocGia, String soDienThoai, String email, String gioiTinh, String khoa) {
         this.maDocGia = maDocGia;
         this.tenDocGia = tenDocGia;

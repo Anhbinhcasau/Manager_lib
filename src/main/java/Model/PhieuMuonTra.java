@@ -44,6 +44,7 @@ public class PhieuMuonTra {
     private boolean trangThai;
     private String trangThaiHienThi;
     public String sachMuonHienThi;
+    //đẻ hà coi lại rồi coi hùng cần chỉnh cái nào hà nhắn cho hùng ha uhm hùng tắt
 
     public String getSachMuonHienThi(){
         String hienthi = "";
