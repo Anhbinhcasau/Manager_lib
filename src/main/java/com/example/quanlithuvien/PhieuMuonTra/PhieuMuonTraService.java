@@ -31,12 +31,27 @@ public class PhieuMuonTraService {
         return sb.toString();
     }
     public void addPhieuMuonTra(PhieuMuonTra phieuMuonTra) {
+        String checkStatusQuery = "SELECT trangThai FROM phieumuontra WHERE maDocGia = ?";
+        boolean isTrangThaiTrue = true;
+
+        try (PreparedStatement checkStatusStatement = connection.prepareStatement(checkStatusQuery)) {
+            System.out.println(phieuMuonTra.getMaPhieu());
+            checkStatusStatement.setString(1, phieuMuonTra.getMaDocGia());
+            ResultSet resultSet = checkStatusStatement.executeQuery();
+
+            if (resultSet.next()) {
+                isTrangThaiTrue = resultSet.getBoolean("trangThai");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
         String query = "INSERT INTO phieumuontra (maPhieuMuonTra ,ngayMuon, ngayTra, maDocGia, trangThai) " +
                 "VALUES (?, ?, ?, ?, ?)";
-
         String queryForRentBook = "INSERT INTO sachmuon (phieuMuon, idSach, soLuongMuon) " +
                 "VALUES (?, ?, ?)";
-
+        if (isTrangThaiTrue) {
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             BooksService booksService = new BooksService(connection);
             String idRandom = generateRandomString();
@@ -60,8 +75,26 @@ public class PhieuMuonTraService {
 
 
         } catch (SQLException e) {
+            System.out.println("Thẻ đã hết hạn");
+        } } else {
+            System.out.println("Không thể thêm dữ liệu với maPhieuMuonTra vì vẫn còn đang mượn.");
+        }
+    }
+    public String getBookNameById(String idSach) {
+        String query = "SELECT tenSach FROM book WHERE idSach = ?";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setString(1, idSach);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getString("tenSach");
+            }
+        } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        return null;
     }
 
     public void traSach(String maPhieuMuonTra) {
@@ -132,9 +165,9 @@ public class PhieuMuonTraService {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return phieuMuonTraList;
     }
+
     public List<LichSuMuonSach> listPhieuMuonTraByMaDocGia(String maDocGia) {
         String query = "SELECT pm.*, sm.soLuongMuon, s.tenSach " +
                 "FROM phieumuontra pm " +
