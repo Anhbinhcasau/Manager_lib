@@ -58,8 +58,8 @@ public class QLNDView implements Initializable {
 
     ConnectDatabase connectDatabase = new ConnectDatabase();
 
-     QLNDService qlndService = new QLNDService(connectDatabase.getConnection());
-     PhieuMuonTraService phieuMuonTraService = new PhieuMuonTraService(connectDatabase.getConnection());
+    QLNDService qlndService = new QLNDService(connectDatabase.getConnection());
+    PhieuMuonTraService phieuMuonTraService = new PhieuMuonTraService(connectDatabase.getConnection());
     private void refreshTableView(ObservableList<TheThanhVien> theThanhVienObservableList) {
         Platform.runLater(() -> {
             tvListUser.getItems().clear();
@@ -110,7 +110,6 @@ public class QLNDView implements Initializable {
         String maDocGia = selectedTheThanhVien.getMaDocGia();
         List<LichSuMuonSach> listLichSu = phieuMuonTraService.listPhieuMuonTraByMaDocGia(maDocGia);
         ObservableList<LichSuMuonSach> phieuMuonTraObservableList = FXCollections.observableArrayList(listLichSu);
-        System.out.println(phieuMuonTraObservableList);
         refreshTableView2(phieuMuonTraObservableList);
 
 
