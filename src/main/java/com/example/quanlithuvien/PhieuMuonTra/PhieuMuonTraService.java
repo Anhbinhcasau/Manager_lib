@@ -32,7 +32,7 @@ public class PhieuMuonTraService {
     }
     public void addPhieuMuonTra(PhieuMuonTra phieuMuonTra) {
         String checkStatusQuery = "SELECT trangThai FROM phieumuontra WHERE maDocGia = ?";
-        boolean isTrangThaiTrue = false;
+        boolean isTrangThaiTrue = true;
 
         try (PreparedStatement checkStatusStatement = connection.prepareStatement(checkStatusQuery)) {
             System.out.println(phieuMuonTra.getMaPhieu());
@@ -48,7 +48,7 @@ public class PhieuMuonTraService {
 
 
         String query = "INSERT INTO phieumuontra (maPhieuMuonTra ,ngayMuon, ngayTra, maDocGia, trangThai) " +
-                "VALUES (?, ?, ?, ?, ?) WHERE trangThai = 'Đã kích hoạt'";
+                "VALUES (?, ?, ?, ?, ?)";
         String queryForRentBook = "INSERT INTO sachmuon (phieuMuon, idSach, soLuongMuon) " +
                 "VALUES (?, ?, ?)";
         if (isTrangThaiTrue) {
@@ -79,6 +79,22 @@ public class PhieuMuonTraService {
         } } else {
             System.out.println("Không thể thêm dữ liệu với maPhieuMuonTra vì vẫn còn đang mượn.");
         }
+    }
+    public String getBookNameById(String idSach) {
+        String query = "SELECT tenSach FROM book WHERE idSach = ?";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setString(1, idSach);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getString("tenSach");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     public void traSach(String maPhieuMuonTra) {

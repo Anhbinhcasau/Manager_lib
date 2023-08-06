@@ -1,6 +1,8 @@
 package com.example.quanlithuvien.PhieuMuonTra;
 
 import Model.Book;
+import Model.SachMuon;
+import Model.TheThanhVien;
 import Model.TrangThaiPhieuMuon;
 import com.example.quanlithuvien.Books.BooksService;
 import com.example.quanlithuvien.ConnectDatabase;
@@ -64,6 +66,8 @@ public class PhieuMuonTraView implements Initializable {
 
     }
     ConnectDatabase connectDatabase = new ConnectDatabase();
+    PhieuMuonTraService phieuMuonTraService = new PhieuMuonTraService(connectDatabase.getConnection());
+
     PhieuMuonTraController phieuMuonTraController = new PhieuMuonTraController(connectDatabase.getConnection());
 
     private void refreshTableView() {
@@ -162,6 +166,24 @@ public class PhieuMuonTraView implements Initializable {
         return null;
     }
 
+    private void refreshTableView2() {
+        Platform.runLater(() -> {
+            lvDanhSachSach.getItems().clear();
+
+            ObservableList<String> items = FXCollections.observableArrayList();
+
+            for (HashMap.Entry<String, Integer> entry : listBeforeAddBook.entrySet()) {
+                String maSach = entry.getKey();
+                int soLuongMuon = entry.getValue();
+                String tenSach = phieuMuonTraService.getBookNameById(maSach);
+
+                items.add(maSach + ": " + soLuongMuon + " - " + tenSach);
+            }
+
+            lvDanhSachSach.setItems(items);
+        });
+    }
+
     public void btThemSach(ActionEvent actionEvent) {
         String selectedBookName = cbSach.getValue();
         String soLuongMuonStr = tfSoLuong.getText();
@@ -222,7 +244,19 @@ public class PhieuMuonTraView implements Initializable {
 
 
     public void xoaSach(ActionEvent actionEvent) {
+        String selectedItem = (String) lvDanhSachSach.getSelectionModel().getSelectedItem();
+
+        String[] parts = selectedItem.split(":");
+        if (parts.length == 2) {
+            String tenSach = parts[0];
+
+            if (listBeforeAddBook.containsKey(tenSach)) {
+                listBeforeAddBook.keySet().remove(tenSach);
+            }
+        refreshTableView2();
+        }
     }
+
 
     public void xoaPhieuMuon(ActionEvent actionEvent) {
         BooksService booksService = new BooksService(connectDatabase.getConnection());
