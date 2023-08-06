@@ -32,7 +32,7 @@ public class PhieuMuonTraService {
     }
     public void addPhieuMuonTra(PhieuMuonTra phieuMuonTra) {
         String checkStatusQuery = "SELECT trangThai FROM phieumuontra WHERE maDocGia = ?";
-        boolean isTrangThaiTrue = false;
+        boolean isTrangThaiTrue = true;
 
         try (PreparedStatement checkStatusStatement = connection.prepareStatement(checkStatusQuery)) {
             System.out.println(phieuMuonTra.getMaPhieu());
@@ -48,7 +48,7 @@ public class PhieuMuonTraService {
 
 
         String query = "INSERT INTO phieumuontra (maPhieuMuonTra ,ngayMuon, ngayTra, maDocGia, trangThai) " +
-                "VALUES (?, ?, ?, ?, ?) WHERE trangThai = 'Đã kích hoạt'";
+                "VALUES (?, ?, ?, ?, ?)";
         String queryForRentBook = "INSERT INTO sachmuon (phieuMuon, idSach, soLuongMuon) " +
                 "VALUES (?, ?, ?)";
         if (isTrangThaiTrue) {
