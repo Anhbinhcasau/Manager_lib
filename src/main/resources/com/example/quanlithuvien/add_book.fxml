@@ -27,7 +27,7 @@
                </image>
             </ImageView>
          </graphic></Button>
-        <Label layoutX="47.0" layoutY="147.0" prefHeight="18.0" prefWidth="68.0" text="Mã sách ">
+        <Label layoutX="53.0" layoutY="132.0" prefHeight="18.0" prefWidth="68.0" text="Mã sách ">
          <font>
             <Font size="13.0" />
          </font></Label>
@@ -35,7 +35,7 @@
         <Label layoutX="50.0" layoutY="232.0" prefHeight="18.0" prefWidth="73.0" text="Tác giả" />
         <Label layoutX="45.0" layoutY="306.0" text="Thể loại" />
         <Label layoutX="41.0" layoutY="268.0" prefHeight="18.0" prefWidth="80.0" text="Nhà xuất bản" />
-        <TextField fx:id="textMaSach" layoutX="166.0" layoutY="143.0" prefHeight="26.0" prefWidth="199.0" />
+        <TextField fx:id="textMaSach" layoutX="166.0" layoutY="128.0" prefHeight="26.0" prefWidth="199.0" />
         <ScrollPane fx:id="spSach" layoutY="467.0" prefHeight="313.0" prefWidth="772.0">
             <content>
                 <TableView fx:id="tbSach" prefHeight="394.0" prefWidth="770.0">
@@ -89,6 +89,7 @@
             </Label>
          </children>
       </AnchorPane>
+      <Label fx:id="ms_error" layoutX="170.0" layoutY="155.0" prefHeight="18.0" prefWidth="190.0" textFill="#c11313" />
     </children>
 
 </AnchorPane>

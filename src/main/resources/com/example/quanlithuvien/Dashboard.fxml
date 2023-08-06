@@ -9,13 +9,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="864.0" prefWidth="800.0" style="-fx-background-color: White;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlithuvien.Controller">
+<AnchorPane prefHeight="864.0" prefWidth="1110" style="-fx-background-color: White;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlithuvien.Controller">
    <children>
-      <AnchorPane prefHeight="76.0" prefWidth="1080.0" style="-fx-background-color: #CCFFFF;">
+      <AnchorPane prefHeight="76.0" prefWidth="1110.0" style="-fx-background-color: #CCFFFF;">
          <children>
             <Label layoutX="7.0" layoutY="7.0" />
 
-            <ImageView fx:id="exit" fitHeight="37.0" fitWidth="41.0" layoutX="945.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="exit" fitHeight="37.0" fitWidth="41.0" layoutX="979.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../img/exit.png" />
                </image>
@@ -64,7 +64,7 @@
          <children>
             <StackPane fx:id="stpane" layoutX="21.0" prefHeight="733.0" prefWidth="780.0">
                <children>
-                  <VBox prefHeight="786.0" prefWidth="726.0" spacing="5.0" />
+                  <VBox prefHeight="734.0" prefWidth="1100.0" spacing="5.0" />
                </children>
             </StackPane>
          </children>
@@ -91,7 +91,7 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="55.0" layoutY="135.0" text="Thống kê">
+            <JFXButton layoutX="55.0" layoutY="135.0" onAction="#thongke" text="Thống kê">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>

@@ -18,6 +18,7 @@ import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -64,14 +65,25 @@ public class Controller implements Initializable {
 
     }
 
-    public void quanly_muontra(ActionEvent actionEvent) {
+    public void quanly_muontra(ActionEvent actionEvent) throws IOException {
+        Parent fxmlLoader =  FXMLLoader.load(getClass().getResource("QuanLyMuonTra.fxml"));
+        stpane.getChildren().removeAll();
+        stpane.getChildren().setAll(fxmlLoader);
 
     }
 
-    public void quanly_nguoidung(ActionEvent actionEvent) {
+    public void quanly_nguoidung(ActionEvent actionEvent) throws IOException {
+        Parent fxmlLoader =  FXMLLoader.load(getClass().getResource("KiemTraNguoiDung.fxml"));
+        stpane.getChildren().removeAll();
+        stpane.getChildren().setAll(fxmlLoader);
     }
 
     public void dangxuat(ActionEvent actionEvent) {
     }
 
+    public void thongke(ActionEvent actionEvent) throws IOException {
+        Parent fxmlLoader =  FXMLLoader.load(getClass().getResource("ThongKe.fxml"));
+        stpane.getChildren().removeAll();
+        stpane.getChildren().setAll(fxmlLoader);
+    }
 }

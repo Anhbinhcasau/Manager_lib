@@ -59,6 +59,8 @@ public class BookController implements Initializable {
     private TableColumn<Book,String > ClSoLuong;
     @FXML
     private ImageView add,edit,search;
+    @FXML
+    private Label ms_error;
 
     ObservableList<Book>  bookList= FXCollections.observableArrayList();
     String idSachUpdate;
@@ -69,6 +71,19 @@ public class BookController implements Initializable {
         try {
             ConnectDatabase data = new ConnectDatabase();
             Connection connection = data.getConnection();
+
+            String query ="select idSach from book ";
+            PreparedStatement statement1 = connection.prepareStatement(query);
+            ResultSet rs=statement1.executeQuery();
+            while (rs.next()){
+                String id = rs.getString("idSach");
+                if(masach.equals(id)){
+                    ms_error.setText("Mã đã được sử dụng");
+
+                }
+
+            }
+
 
 
             book.setMaSach(masach);
@@ -104,8 +119,10 @@ public class BookController implements Initializable {
 
             String masach=textMaSach.getText();
             int sl = Integer.parseInt(textSoLuong.getText());
+
             ThemBook(masach, textTenSach.getText(), textTacGia.getText(), textNXB.getText(), theLoaiValue, sl);
             tbSach.refresh();
+
 
         }
         catch (Exception e) {

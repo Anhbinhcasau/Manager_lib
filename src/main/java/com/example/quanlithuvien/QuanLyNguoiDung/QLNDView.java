@@ -15,6 +15,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.w3c.dom.Text;
 
 import java.net.URL;
 import java.util.Date;
@@ -45,13 +46,20 @@ public class QLNDView implements Initializable {
     @FXML
     private TableColumn<TheThanhVien, String> TCTenDocGIa;
     @FXML
-    private TableColumn<TheThanhVien, String> TCSoDienThoai;
+    private TextField tfEmail;
     @FXML
-    private TableColumn<TheThanhVien, String> TCEmail;
+    private TextField tfSoDienThoai;
     @FXML
-    private TableColumn<TheThanhVien, String> TCGioiTInh;
-    @FXML
-    private TableColumn<TheThanhVien, String> TCKhoa;
+    private TextField tfTenDocGia;
+
+//    @FXML
+//    private TableColumn<TheThanhVien, String> TCSoDienThoai;
+//    @FXML
+//    private TableColumn<TheThanhVien, String> TCEmail;
+//    @FXML
+//    private TableColumn<TheThanhVien, String> TCGioiTInh;
+//    @FXML
+//    private TableColumn<TheThanhVien, String> TCKhoa;
     @FXML
     private TableColumn<TheThanhVien, String> ClNgayDK;
     @FXML
@@ -84,18 +92,27 @@ public class QLNDView implements Initializable {
             tvSachMuon.setItems(phieuMuonTraObservableList);
         });
     }
+    private void refreshTableViewForUserList() {
+        Platform.runLater(() -> {
+            tvListUser.getItems().clear();
+            List<Model.TheThanhVien> theThanhVienList = qlndService.listNguoiDung();
+            ObservableList<Model.TheThanhVien> phieuMuonTraObservableList = FXCollections.observableArrayList(theThanhVienList);
+
+            tvListUser.setItems(phieuMuonTraObservableList);
+        });
+    }
     @Override
     public void initialize(URL location, ResourceBundle resources)  {
 
         TCMaDocGia.setCellValueFactory(new PropertyValueFactory<>("maDocGia"));
         TCTenDocGIa.setCellValueFactory(new PropertyValueFactory<>("tenDocGia"));
-        TCSoDienThoai.setCellValueFactory(new PropertyValueFactory<>("soDienThoai"));
-        TCEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
-        TCGioiTInh.setCellValueFactory(new PropertyValueFactory<>("gioiTinh"));
+        //TCSoDienThoai.setCellValueFactory(new PropertyValueFactory<>("soDienThoai"));
+        //TCEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        //TCGioiTInh.setCellValueFactory(new PropertyValueFactory<>("gioiTinh"));
         ClNgayDK.setCellValueFactory(new PropertyValueFactory<>("ngayDangKi"));
         ClNgayHH.setCellValueFactory(new PropertyValueFactory<>("ngayHetHan"));
         ClTinhTrang.setCellValueFactory(new PropertyValueFactory<>("tinhTrangThe"));
-        TCKhoa.setCellValueFactory(new PropertyValueFactory<>("khoa"));
+        //TCKhoa.setCellValueFactory(new PropertyValueFactory<>("khoa"));
 
 
         List<TheThanhVien> theThanhVienList = qlndService.listNguoiDung();
@@ -122,5 +139,15 @@ public class QLNDView implements Initializable {
         refreshTableView2(phieuMuonTraObservableList);
 
 
+    }
+
+    public void btChinhSua(ActionEvent actionEvent) {
+        String soDienThoai = tfSoDienThoai.getText();
+        String email = tfEmail.getText();
+        String tenDocGia = tfTenDocGia.getText();
+        TheThanhVien chonDong =  tvListUser.getSelectionModel().getSelectedItem();
+        String maDocGia = chonDong.getMaDocGia();
+        qlndService.suaThongTinNguoiDung(maDocGia,email, tenDocGia, soDienThoai);
+        refreshTableViewForUserList();
     }
 }

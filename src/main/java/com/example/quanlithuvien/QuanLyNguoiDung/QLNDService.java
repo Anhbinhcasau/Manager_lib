@@ -45,6 +45,20 @@ public class QLNDService {
         return nguoiDungList;
     }
 
+    public void suaThongTinNguoiDung(String maND, String email, String hoTen, String soDienThoai){
+        String updateQuery = "UPDATE thethanhvien SET (email, tenDocGia, soDienThoai) = (?, ?, ?) WHERE maDocGia = ?";
+        try(PreparedStatement statement = connection.prepareStatement(updateQuery)){
+            statement.setString(1, email);
+            statement.setString(2, hoTen);
+            statement.setString(3, soDienThoai);
+            statement.setString(4, maND);
+            statement.executeUpdate();
+        }
+        catch(Exception exception){
+            System.out.println("Chua them du thong tin");
+        }
+    }
+
     public List<TheThanhVien> searchNguoiDung(String keyword) {
             List<TheThanhVien> result = new ArrayList<>();
             String query = "SELECT * FROM thethanhvien WHERE maDocGia LIKE ? OR tenDocGia LIKE ?";
