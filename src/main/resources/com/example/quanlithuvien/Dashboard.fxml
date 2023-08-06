@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="864.0" prefWidth="1110" style="-fx-background-color: White;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlithuvien.Controller">
+   <children>
+      <AnchorPane prefHeight="76.0" prefWidth="1110.0" style="-fx-background-color: #CCFFFF;">
+         <children>
+            <Label layoutX="7.0" layoutY="7.0" />
+
+            <ImageView fx:id="exit" fitHeight="37.0" fitWidth="41.0" layoutX="979.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../img/exit.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="387.0" layoutY="9.0" prefHeight="55.0" prefWidth="276.0" text="Thư viện sách" textFill="#232020" textOverrun="WORD_ELLIPSIS">
+               <font>
+                  <Font name="System Bold" size="38.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="78.0" prefHeight="786.0" prefWidth="63.0" style="-fx-background-color: white;">
+         <children>
+            <VBox alignment="TOP_CENTER" layoutY="-1.0" prefHeight="790.0" prefWidth="63.0" spacing="10.0" style="-fx-background-color: #FFFFCC;" AnchorPane.topAnchor="-1.0">
+               <children>
+                  <ImageView fx:id="book" fitHeight="52.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../img/img.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="loan" fitHeight="46.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../img/loan.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="user" fitHeight="46.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../img/user.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="thongke" fitHeight="43.0" fitWidth="47.0" focusTraversable="true" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../img/thong.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="setting" fitHeight="41.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../img/logout.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="260.0" layoutY="74.0" prefHeight="769.0" prefWidth="806.0">
+         <children>
+            <StackPane fx:id="stpane" layoutX="21.0" prefHeight="733.0" prefWidth="780.0">
+               <children>
+                  <VBox prefHeight="734.0" prefWidth="1100.0" spacing="5.0" />
+               </children>
+            </StackPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="58.0" layoutY="78.0" prefHeight="786.0" prefWidth="202.0" style="-fx-background-color: #FFFFCC;">
+         <children>
+            <JFXButton alignment="BASELINE_LEFT" buttonType="RAISED" layoutX="44.0" layoutY="180.0" onAction="#dangxuat" prefHeight="37.0" prefWidth="115.0" text="Đăng xuất">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </JFXButton>
+            <JFXButton alignment="BASELINE_LEFT" buttonType="RAISED" layoutX="24.0" layoutY="83.0" onAction="#quanly_nguoidung" prefHeight="38.0" prefWidth="169.0" text="Quản lý người dùng ">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </JFXButton>
+            <JFXButton alignment="BASELINE_LEFT" buttonType="RAISED" layoutX="34.0" layoutY="45.0" onAction="#quanly_muontra" prefHeight="38.0" prefWidth="150.0" text="Quản lý mượn trả" textFill="#300e0e">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </JFXButton>
+            <JFXButton alignment="BASELINE_LEFT" buttonType="RAISED" layoutX="44.0" onAction="#quanlysach" prefHeight="43.0" prefWidth="140.0" text="Quản lý sách " textFill="#2e2121">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="55.0" layoutY="135.0" onAction="#thongke" text="Thống kê">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

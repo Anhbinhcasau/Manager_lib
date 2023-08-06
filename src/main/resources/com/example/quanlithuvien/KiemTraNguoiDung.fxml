@@ -5,63 +5,72 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlithuvien.QuanLyNguoiDung.QLNDView">
+<AnchorPane prefHeight="805.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlithuvien.QuanLyNguoiDung.QLNDView">
     <children>
-        <VBox layoutX="30.0" layoutY="20.0" spacing="10">
-            <!-- Giao diện tạo phiếu mượn -->
-            <Label text="Thông tin người dùng:">
-                <font>
-                    <Font name="System Bold" size="14.0" />
-                </font>
-            </Label>
-            <HBox spacing="10">
-                <VBox spacing="3" />
-                <VBox spacing="3" />
-                <VBox spacing="4">
-                    <Label text="Tìm Kiếm:" />
-                    <TextField fx:id="tfTimKiem" editable="true" prefHeight="26.0" prefWidth="175.0" />
-                    <Button onAction="#btTimKiem" prefHeight="26.0" prefWidth="107.0" text="Tìm kiếm" />
-                    <Button onAction="#btXemLichSu" prefHeight="26.0" prefWidth="107.0" text="Xem lịch sử" />
+         <TableView fx:id="tvListUser" layoutX="47.0" layoutY="361.0" prefHeight="203.0" prefWidth="727.0">
+             <columns>
+                 <TableColumn fx:id="TCMaDocGia" prefWidth="83.99999713897705" text="Mã độc " />
+                 <TableColumn fx:id="TCTenDocGIa" prefWidth="128.79995727539062" text="Tên độc giả" />
+            <TableColumn fx:id="ClNgayDK" minWidth="0.0" prefWidth="148.79998779296875" text="Ngày đăng ký" />
+            <TableColumn fx:id="ClNgayHH" prefWidth="145.60003662109375" text="Ngày hết hạn" />
+            <TableColumn fx:id="ClTinhTrang" minWidth="1.5999755859375" prefWidth="217.60009765625" text="Tình trạng thẻ" />
+             </columns>
+         </TableView>
 
-                </VBox>
-
-            </HBox>
-            <HBox spacing="10">
-                <VBox spacing="5" />
-                <VBox spacing="5" />
-
-<!--                <Button onAction="#btTaoPhieuMuon" prefHeight="26.0" prefWidth="107.0" text="Tạo phiếu mượn" />-->
-            </HBox>
-            <TableView fx:id="tvListUser" prefHeight="184.0" prefWidth="770.0">
-                <columns>
-                    <TableColumn fx:id="TCMaDocGia" prefWidth="100.0" text="Mã độc " />
-                    <TableColumn fx:id="TCTenDocGIa" prefWidth="131.20001220703125" text="Tên độc giả" />
-                    <TableColumn fx:id="TCSoDienThoai" prefWidth="162.4000244140625" text="Số điện thoại" />
-                    <TableColumn fx:id="TCEmail" prefWidth="153.5999755859375" text="Email" />
-                    <TableColumn fx:id="TCGioiTInh" minWidth="0.0" prefWidth="100.0" text="Giới tính" />
-                    <TableColumn fx:id="TCKhoa" prefWidth="124.7999267578125" text="Khoa" />
-                </columns>
-            </TableView>
-        </VBox>
-
-        <TableView fx:id="tvSachMuon" layoutX="30.0" layoutY="391.0" prefHeight="184.0" prefWidth="770.0">
+        <TableView fx:id="tvSachMuon" layoutX="45.0" layoutY="583.0" prefHeight="184.0" prefWidth="727.0">
             <columns>
-                <TableColumn fx:id="TcTenSach" prefWidth="181.60003662109375" text="Sách" />
-                <TableColumn fx:id="TcNgayMuon" prefWidth="135.199951171875" text="Ngày mượn" />
-                <TableColumn fx:id="TcNgayTra" prefWidth="172.00006103515625" text="Ngày trả" />
-                <TableColumn fx:id="TcSoLuong" prefWidth="136.0" text="Số lượng" />
-                <TableColumn fx:id="TcTinhTrang" minWidth="0.0" prefWidth="145.5999755859375" text="Tình trạng" />
+                <TableColumn fx:id="TcTenSach" prefWidth="119.99996662139893" text="Sách" />
+                <TableColumn fx:id="TcSoLuong" prefWidth="113.5999755859375" text="Số lượng" />
+                <TableColumn fx:id="TcTinhTrang" minWidth="0.0" prefWidth="199.20001220703125" text="Tình trạng" />
+                <TableColumn fx:id="TcNgayTra" minWidth="0.0" prefWidth="154.39996337890625" text="Ngày trả" />
+                <TableColumn fx:id="TcNgayMuon" prefWidth="154.4000122070313" text="Ngày mượn" />
             </columns>
         </TableView>
 
 
         <!-- Thông báo lỗi -->
-        <Label fx:id="errorMaDG" layoutY="220.0" prefWidth="175.0" text="Mã độc giả không hợp lệ" visible="false" />
+        <Label fx:id="errorMaDG" layoutX="74.0" layoutY="371.0" prefWidth="175.0" text="Mã độc giả không hợp lệ" visible="false" />
+      <Label layoutX="67.0" layoutY="132.0" text="Tìm Kiếm:" />
+      <TextField fx:id="tfTimKiem" editable="true" layoutX="146.0" layoutY="128.0" prefHeight="26.0" prefWidth="227.0" />
+      <Button layoutX="146.0" layoutY="168.0" onAction="#btTimKiem" prefHeight="26.0" prefWidth="107.0" text="Tìm kiếm" />
+      <Button layoutX="267.0" layoutY="168.0" onAction="#btXemLichSu" prefHeight="26.0" prefWidth="107.0" text="Xem lịch sử" />
+      <AnchorPane layoutX="434.0" layoutY="105.0" prefHeight="240.0" prefWidth="326.0" style="-fx-background-color: #CCFFE5;">
+         <children>
+            <TextField fx:id="tfTenDocGia"  layoutX="125.0" layoutY="160.0" />
+            <Label   layoutX="23.0" layoutY="164.0" text="Số điện thoại" />
+            <TextField fx:id="tfSoDienThoai" layoutX="125.0" layoutY="105.0" />
+            <Label layoutX="28.0" layoutY="111.0" text="Email" />
+            <TextField fx:id="tfEmail" layoutX="125.0" layoutY="55.0" />
+            <Label layoutX="14.0" layoutY="59.0" text="Tên độc giả" />
+            <Label layoutX="65.0" layoutY="14.0" text="CHỈNH SỬA THÔNG TIN">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+            <Button onAction="#btChinhSua" layoutX="125.0" layoutY="201.0" mnemonicParsing="false" text="Chỉnh sửa" />
+         </children>
+      </AnchorPane>
+      <Label layoutX="24.0" layoutY="55.0" />
+      <AnchorPane layoutX="3.0" layoutY="-1.0" prefHeight="94.0" prefWidth="794.0" style="-fx-background-color: E0E0E0;">
+         <children>
+               <!-- Giao diện tạo phiếu mượn -->
+               <Label layoutX="276.0" layoutY="33.0" prefHeight="20.0" prefWidth="242.0" text="THÔNG TIN NGƯỜI DÙNG">
+                   <font>
+                       <Font name="System Bold" size="19.0" />
+                   </font>
+               </Label>
+            <ImageView fitHeight="62.0" fitWidth="62.0" layoutX="540.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../Downloads/icons8-add-bookmark-80.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
 <!--        <Button layoutX="160.0" layoutY="350.0" mnemonicParsing="false" onAction="#xoaSach" prefHeight="26.0" prefWidth="80.0" text="Xóa sách" />-->
 
 <!--        &lt;!&ndash; Nút "Xóa phiếu mượn trả" &ndash;&gt;-->

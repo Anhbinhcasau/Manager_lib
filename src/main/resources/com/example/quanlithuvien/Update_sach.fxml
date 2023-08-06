@@ -4,13 +4,15 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="438.0" prefWidth="542.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlithuvien.Update_Sach">
 
     <children>
-        <Label layoutX="162.0" layoutY="64.0" prefHeight="27.0" prefWidth="218.0" text="Cập nhật thông tin sách ">
+        <Label layoutX="162.0" layoutY="64.0" prefHeight="27.0" prefWidth="218.0" text="Cập nhật thông tin sách " textFill="#009999">
             <font>
                 <Font name="System Bold" size="18.0" />
             </font>
@@ -24,7 +26,14 @@
         <TextField layoutX="252.0" layoutY="168.0" />
         <TextField layoutX="252.0" layoutY="210.0" />
         <Label layoutX="124.0" layoutY="290.0" text="Thể loại" />
-        <Button layoutX="252.0" layoutY="349.0" mnemonicParsing="false" text="Cập nhật" />
+        <Button layoutX="252.0" layoutY="349.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="78.0" text="Cập nhật">
+         <graphic>
+            <ImageView fitHeight="39.0" fitWidth="95.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../Downloads/icons8-add-bookmark-80.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
       <ChoiceBox fx:id="mychoicebox1" layoutX="251.0" layoutY="250.0" prefWidth="150.0" />
     </children>
 

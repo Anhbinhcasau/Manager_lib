@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -16,9 +17,10 @@ public class Dangki_thanhvien extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Home.class.getResource("dangki_thanhvien.fxml"));
-        AnchorPane root = fxmlLoader.load();
-        Scene scene = new Scene(root);
+        FXMLLoader fxmlLoader = new FXMLLoader(Home.class.getResource("dangki_thanhvien.fxml"));;
+        Scene scene = new Scene(fxmlLoader.load());
+        primaryStage.initStyle(StageStyle.DECORATED);
+        primaryStage.setTitle("Register");
         primaryStage.setScene(scene);
         primaryStage.show();
     }

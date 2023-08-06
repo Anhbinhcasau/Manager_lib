@@ -24,6 +24,37 @@ public class TheThanhVien {
     private String gioiTinh;
     private String khoa;
     private String tinhTrangThe;
+    private  String ngayDangKi;
+    private  String NgayHetHan;
+    private  boolean tt;
+
+    public TheThanhVien(String maDocGia, String tenDocGia, String soDienThoai, String email, String gioiTinh, String khoa, String tinhTrangThe, String ngayDangKi, String ngayHetHan) {
+        this.maDocGia = maDocGia;
+        this.tenDocGia = tenDocGia;
+        this.soDienThoai = soDienThoai;
+        this.email = email;
+        this.gioiTinh = gioiTinh;
+        this.khoa = khoa;
+        this.tinhTrangThe = tinhTrangThe;
+        this.ngayDangKi = ngayDangKi;
+        NgayHetHan = ngayHetHan;
+    }
+
+    public String getNgayDangKi() {
+        return ngayDangKi;
+    }
+
+    public void setNgayDangKi(String ngayDangKi) {
+        this.ngayDangKi = ngayDangKi;
+    }
+
+    public String getNgayHetHan() {
+        return NgayHetHan;
+    }
+
+    public void setNgayHetHan(String ngayHetHan) {
+        NgayHetHan = ngayHetHan;
+    }
 
     public String getTinhTrangThe() {
         return tinhTrangThe;

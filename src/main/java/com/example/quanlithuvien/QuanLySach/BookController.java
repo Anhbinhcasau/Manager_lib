@@ -14,7 +14,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
+import java.io.File;
 import java.net.URL;
 import java.sql.*;
 import java.util.ArrayList;
@@ -54,9 +57,14 @@ public class BookController implements Initializable {
     private TableColumn<Book,String > ClTheLoai;
     @FXML
     private TableColumn<Book,String > ClSoLuong;
+    @FXML
+    private ImageView add,edit,search;
+    @FXML
+    private Label ms_error;
 
     ObservableList<Book>  bookList= FXCollections.observableArrayList();
     String idSachUpdate;
+    Book book = new Book();
 
 
     public  void  ThemBook(String masach,String tensach,String tacgia,String nhaxuatban,String theloai,int soluong) {
@@ -64,7 +72,20 @@ public class BookController implements Initializable {
             ConnectDatabase data = new ConnectDatabase();
             Connection connection = data.getConnection();
 
-            Book book = new Book();
+            String query ="select idSach from book ";
+            PreparedStatement statement1 = connection.prepareStatement(query);
+            ResultSet rs=statement1.executeQuery();
+            while (rs.next()){
+                String id = rs.getString("idSach");
+                if(masach.equals(id)){
+                    ms_error.setText("Mã đã được sử dụng");
+
+                }
+
+            }
+
+
+
             book.setMaSach(masach);
             book.setTenSach(tensach);
             book.setTacGia(tacgia);
@@ -79,9 +100,10 @@ public class BookController implements Initializable {
             statement.setString(3, book.getTacGia());
             statement.setString(4, book.getNhaXuatBan());
             statement.setInt(5, book.getSoLuong());
-
             statement.setString(6, book.getTheLoai());
             statement.executeUpdate();
+            tbSach.refresh();
+            bookList.add(book);
 
 
         } catch (Exception e) {
@@ -97,8 +119,11 @@ public class BookController implements Initializable {
 
             String masach=textMaSach.getText();
             int sl = Integer.parseInt(textSoLuong.getText());
+
             ThemBook(masach, textTenSach.getText(), textTacGia.getText(), textNXB.getText(), theLoaiValue, sl);
             tbSach.refresh();
+
+
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -109,6 +134,17 @@ public class BookController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        File image = new File("img/add.png");
+        Image img = new Image(image.toURI().toString());
+        File image1 = new File("img/edit.png");
+        Image img1 = new Image(image1.toURI().toString());
+        File image2 = new File("img/kiem.png");
+        Image img2 = new Image(image2.toURI().toString());
+        add.setImage(img);
+        edit.setImage(img1);
+        search.setImage(img2);
+
         try{
         ConnectDatabase data = new ConnectDatabase();
         Connection connection = data.getConnection();
@@ -163,6 +199,8 @@ public class BookController implements Initializable {
             ClSoLuong.setCellValueFactory(new PropertyValueFactory<>("SoLuong"));
             tbSach.setItems(bookList);
 
+            tbSach.refresh();
+
             ///taooj menu chỉnh sửa và xóa
             ///Khi click vào item
             ContextMenu contextMenu = new ContextMenu();
@@ -181,11 +219,21 @@ public class BookController implements Initializable {
 
             deleteMenuItem.setOnAction(event -> {
                 String idSach = tbSach.getSelectionModel().getSelectedItem().getMaSach();
-
                 // Xóa bản ghi tương ứng
                 deleteBook(idSach);
                 tbSach.getItems().remove(idSach);
                 tbSach.refresh();
+                Book bookToRemove = tbSach.getItems().stream()
+                        .filter(book -> book.getMaSach().equals(idSach))
+                        .findFirst()
+                        .orElse(null);
+                // Xóa đối tượng book khỏi danh sách
+                if (bookToRemove != null) {
+                    tbSach.getItems().remove(bookToRemove);
+                    tbSach.refresh();
+                }
+
+
 
             });
             editMenuItem.setOnAction(event -> {
@@ -197,8 +245,6 @@ public class BookController implements Initializable {
                 int sl = tbSach.getSelectionModel().getSelectedItem().getSoLuong();
                 ObservableList<String> items = FXCollections.observableArrayList();
 
-
-
                 textMaSach.setText(idSachUpdate);
                 textTenSach.setText(tenSach);
                 textTacGia.setText(tg);
@@ -206,9 +252,6 @@ public class BookController implements Initializable {
                 cbTheLoai.getItems().add(tl);
 
                 textSoLuong.setText(String.valueOf(sl));
-
-
-
 
             });
 
@@ -277,7 +320,7 @@ public class BookController implements Initializable {
     }
 
     public void updateSach(ActionEvent actionEvent) {
-        String masach=textMaSach.getText();
+
         int sl = Integer.parseInt(textSoLuong.getText());
         updateBook(idSachUpdate, textTenSach.getText(), textTacGia.getText(), textNXB.getText(), sl, theLoaiValue);
         tbSach.refresh();
@@ -299,12 +342,13 @@ public class BookController implements Initializable {
             statement.setString(6, id);
 
             statement.executeUpdate();
-            tbSach.refresh();
+
             System.out.println("Sách đã được cập nhật thành công!");
         } catch (SQLException e) {
             System.out.println("Lỗi updateBook: " + e.getMessage());
             e.printStackTrace();
         }
+
     }
 }
 
