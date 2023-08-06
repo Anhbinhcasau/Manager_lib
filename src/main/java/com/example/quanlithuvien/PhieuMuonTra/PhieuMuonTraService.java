@@ -31,12 +31,27 @@ public class PhieuMuonTraService {
         return sb.toString();
     }
     public void addPhieuMuonTra(PhieuMuonTra phieuMuonTra) {
-        String query = "INSERT INTO phieumuontra (maPhieuMuonTra ,ngayMuon, ngayTra, maDocGia, trangThai) " +
-                "VALUES (?, ?, ?, ?, ?)";
+        String checkStatusQuery = "SELECT trangThai FROM phieumuontra WHERE maDocGia = ?";
+        boolean isTrangThaiTrue = false;
 
+        try (PreparedStatement checkStatusStatement = connection.prepareStatement(checkStatusQuery)) {
+            System.out.println(phieuMuonTra.getMaPhieu());
+            checkStatusStatement.setString(1, phieuMuonTra.getMaDocGia());
+            ResultSet resultSet = checkStatusStatement.executeQuery();
+
+            if (resultSet.next()) {
+                isTrangThaiTrue = resultSet.getBoolean("trangThai");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        String query = "INSERT INTO phieumuontra (maPhieuMuonTra ,ngayMuon, ngayTra, maDocGia, trangThai) " +
+                "VALUES (?, ?, ?, ?, ?) WHERE trangThai = 'Đã kích hoạt'";
         String queryForRentBook = "INSERT INTO sachmuon (phieuMuon, idSach, soLuongMuon) " +
                 "VALUES (?, ?, ?)";
-
+        if (isTrangThaiTrue) {
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             BooksService booksService = new BooksService(connection);
             String idRandom = generateRandomString();
@@ -60,7 +75,9 @@ public class PhieuMuonTraService {
 
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Thẻ đã hết hạn");
+        } } else {
+            System.out.println("Không thể thêm dữ liệu với maPhieuMuonTra vì vẫn còn đang mượn.");
         }
     }
 
@@ -130,9 +147,9 @@ public class PhieuMuonTraService {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return phieuMuonTraList;
     }
+
     public List<LichSuMuonSach> listPhieuMuonTraByMaDocGia(String maDocGia) {
         String query = "SELECT pm.*, sm.soLuongMuon, s.tenSach " +
                 "FROM phieumuontra pm " +
