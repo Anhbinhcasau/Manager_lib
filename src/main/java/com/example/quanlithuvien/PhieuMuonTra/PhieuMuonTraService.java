@@ -105,6 +105,7 @@ public class PhieuMuonTraService {
             while(dataOutputForListBookRent.next()){
                 String maPhieuMuonTra = dataOutputForListBookRent.getString("maPhieuMuonTra");
                 String tenSach = dataOutputForListBookRent.getString("tenSach");
+                System.out.println(tenSach);
                 int soLuongMuon = dataOutputForListBookRent.getInt("soLuongMuon");
 
                 if (getListBookRent.containsKey(maPhieuMuonTra)) {
@@ -124,6 +125,7 @@ public class PhieuMuonTraService {
                 String maDocGia = queryOutput.getString("maDocGia");
                 Boolean trangThai = queryOutput.getBoolean("trangThai");
                 HashMap<String, Integer> sachInfo = getListBookRent.get(idPhieu);
+//                System.out.println(sachInfo);
                 PhieuMuonTra phieuMuonTra = new PhieuMuonTra(idPhieu, maDocGia, ngayMuon, ngayTra, sachInfo, trangThai);
                 phieuMuonTraList.add(phieuMuonTra);
             }

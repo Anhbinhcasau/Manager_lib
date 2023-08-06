@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlithuvien.QuanLyNguoiDung.QLNDView">
+<AnchorPane prefHeight="724.0" prefWidth="926.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlithuvien.QuanLyNguoiDung.QLNDView">
     <children>
         <VBox layoutX="30.0" layoutY="20.0" spacing="10">
             <!-- Giao diện tạo phiếu mượn -->
@@ -37,25 +37,28 @@
 
 <!--                <Button onAction="#btTaoPhieuMuon" prefHeight="26.0" prefWidth="107.0" text="Tạo phiếu mượn" />-->
             </HBox>
-            <TableView fx:id="tvListUser" prefHeight="184.0" prefWidth="770.0">
+            <TableView fx:id="tvListUser" prefHeight="203.0" prefWidth="1110.0">
                 <columns>
                     <TableColumn fx:id="TCMaDocGia" prefWidth="100.0" text="Mã độc " />
                     <TableColumn fx:id="TCTenDocGIa" prefWidth="131.20001220703125" text="Tên độc giả" />
                     <TableColumn fx:id="TCSoDienThoai" prefWidth="162.4000244140625" text="Số điện thoại" />
                     <TableColumn fx:id="TCEmail" prefWidth="153.5999755859375" text="Email" />
                     <TableColumn fx:id="TCGioiTInh" minWidth="0.0" prefWidth="100.0" text="Giới tính" />
-                    <TableColumn fx:id="TCKhoa" prefWidth="124.7999267578125" text="Khoa" />
+                    <TableColumn fx:id="TCKhoa" prefWidth="120.80002441406248" text="Khoa" />
+               <TableColumn fx:id="ClNgayDK" prefWidth="111.20001220703125" text="Ngày đăng ký" />
+               <TableColumn fx:id="ClNgayHH" prefWidth="119.20001220703125" text="Ngày hết hạn" />
+               <TableColumn fx:id="ClTinhTrang" prefWidth="107.199951171875" text="Tình trạng thẻ" />
                 </columns>
             </TableView>
         </VBox>
 
-        <TableView fx:id="tvSachMuon" layoutX="30.0" layoutY="391.0" prefHeight="184.0" prefWidth="770.0">
+        <TableView fx:id="tvSachMuon" layoutX="30.0" layoutY="391.0" prefHeight="184.0" prefWidth="895.0">
             <columns>
-                <TableColumn fx:id="TcTenSach" prefWidth="181.60003662109375" text="Sách" />
-                <TableColumn fx:id="TcNgayMuon" prefWidth="135.199951171875" text="Ngày mượn" />
-                <TableColumn fx:id="TcNgayTra" prefWidth="172.00006103515625" text="Ngày trả" />
-                <TableColumn fx:id="TcSoLuong" prefWidth="136.0" text="Số lượng" />
-                <TableColumn fx:id="TcTinhTrang" minWidth="0.0" prefWidth="145.5999755859375" text="Tình trạng" />
+                <TableColumn fx:id="TcTenSach" prefWidth="277.6000270843506" text="Sách" />
+                <TableColumn fx:id="TcNgayMuon" prefWidth="171.19998168945312" text="Ngày mượn" />
+                <TableColumn fx:id="TcNgayTra" prefWidth="139.2000732421875" text="Ngày trả" />
+                <TableColumn fx:id="TcSoLuong" prefWidth="147.20001220703125" text="Số lượng" />
+                <TableColumn fx:id="TcTinhTrang" minWidth="0.0" prefWidth="155.20001220703125" text="Tình trạng" />
             </columns>
         </TableView>
 

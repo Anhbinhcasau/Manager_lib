@@ -10,16 +10,18 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
+import java.io.File;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class Dangki_thanhvien_Controller implements Initializable {
@@ -39,11 +41,18 @@ public class Dangki_thanhvien_Controller implements Initializable {
     private RadioButton radiobtNu;
     @FXML
     private ChoiceBox choiceKhoa;
+    @FXML
+    private DatePicker dateNgayDK;
+    @FXML
+    private DatePicker dateNgayHetHan;
+    @FXML
+    private ImageView img_register;
+
     String khoa;
     ObservableList<Khoa> khoaList= FXCollections.observableArrayList();
     ObservableList<String> items = FXCollections.observableArrayList();
 
-    public  void DangKi(String madocgia,String tendocgia,String sdt,String email,String gioitinh,String khoa) throws SQLException {
+    public  void DangKi(String madocgia,String tendocgia,String sdt,String email,String gioitinh,String khoa,String Ngaydangki,String Ngayhethan) throws SQLException {
 
         TheThanhVien theThanhVien=new TheThanhVien();
         theThanhVien.setMaDocGia(madocgia);
@@ -52,12 +61,14 @@ public class Dangki_thanhvien_Controller implements Initializable {
         theThanhVien.setEmail(email);
         theThanhVien.setGioiTinh(gioitinh);
         theThanhVien.setKhoa(khoa);
-        theThanhVien.setTinhTrangThe("Chưa kích hoạt");
+        theThanhVien.setNgayDangKi(Ngaydangki);
+        theThanhVien.setNgayHetHan(Ngayhethan);
+        theThanhVien.setTinhTrangThe("Đang sử dụng");
         ////Chọn giói tính
 
 
 
-        String insertTV="insert into thethanhvien(maDocGia,tenDocGia,soDienThoai,email,gioiTinh,khoa,TinhTrangThe) values (?,?,?,?,?,?,?)";
+        String insertTV="insert into thethanhvien(maDocGia,tenDocGia,soDienThoai,email,gioiTinh,khoa,NgaydangKy,NgayHetHan,TinhTrangThe) values (?,?,?,?,?,?,?,?,?)";
         PreparedStatement statement=connection.prepareStatement(insertTV);
         statement.setString(1,theThanhVien.getMaDocGia());
         statement.setString(2,theThanhVien.getTenDocGia());
@@ -65,7 +76,9 @@ public class Dangki_thanhvien_Controller implements Initializable {
         statement.setString(4,theThanhVien.getEmail());
         statement.setString(5,theThanhVien.getGioiTinh());
         statement.setString(6,theThanhVien.getKhoa());
-        statement.setString(7,theThanhVien.getTinhTrangThe());
+        statement.setString(7,theThanhVien.getNgayDangKi());
+        statement.setString(8,theThanhVien.getNgayHetHan());
+        statement.setString(9,theThanhVien.getTinhTrangThe());
 
         statement.executeUpdate();
 
@@ -76,6 +89,10 @@ public class Dangki_thanhvien_Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        File image = new File("img/Register.png");
+        Image img = new Image(image.toURI().toString());
+        img_register.setImage(img);
 
         try {
             String selectKhoa="select tenKhoa from khoa";
@@ -115,7 +132,12 @@ public class Dangki_thanhvien_Controller implements Initializable {
         ToggleGroup group=new ToggleGroup();
         radiobtNam.setToggleGroup(group);
         radiobtNu.setToggleGroup(group);
+        LocalDate localDateKH = dateNgayDK.getValue();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String formatnkh = localDateKH.format(formatter);
+        LocalDate localDateHH = dateNgayHetHan.getValue();
+        String formatnkt = localDateHH.format(formatter);
         String gender = ((RadioButton) group.getSelectedToggle()).getText();
-        DangKi(textMaDocGia.getText(),textTenDG.getText(),textSDT.getText(),textEmail.getText(),gender,khoa);
+        DangKi(textMaDocGia.getText(),textTenDG.getText(),textSDT.getText(),textEmail.getText(),gender,khoa,formatnkh,formatnkt);
     }
 }

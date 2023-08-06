@@ -67,7 +67,7 @@ public class TheLoaiController implements Initializable {
 
             tableTheLoai.setContextMenu(contextMenu);
 
-// Bắt sự kiện khi người dùng bấm chuột phải vào một item trong bảng
+            // Bắt sự kiện khi người dùng bấm chuột phải vào một item trong bảng
             tableTheLoai.setOnContextMenuRequested(event -> {
                 TheLoai theLoai = tableTheLoai.getSelectionModel().getSelectedItem();
                 if (theLoai != null) {
@@ -80,6 +80,7 @@ public class TheLoaiController implements Initializable {
 
                     // Xóa bản ghi tương ứng
                     removeTL(idTheLoai);
+                    tableTheLoai.refresh();
                     tableTheLoai.getItems().remove(idTheLoai);
                 tableTheLoai.refresh();
 

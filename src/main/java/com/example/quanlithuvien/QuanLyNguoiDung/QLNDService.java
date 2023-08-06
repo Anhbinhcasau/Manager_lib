@@ -31,9 +31,11 @@ public class QLNDService {
                 String email = resultSet.getString("email");
                 String gioTinh = resultSet.getString("gioiTinh");
                 String khoa = resultSet.getString("khoa");
+                String ndk=resultSet.getString("NgayDangKy");
+                String nhh=resultSet.getString("NgayHetHan");
                 String ttt=resultSet.getString("TinhTrangThe");
 
-                TheThanhVien nguoiDung = new TheThanhVien(maThe, hoTen, soDienThoai, email, gioTinh, khoa,ttt);
+                TheThanhVien nguoiDung = new TheThanhVien(maThe, hoTen, soDienThoai, email, gioTinh, khoa,ttt,ndk,nhh);
                 nguoiDungList.add(nguoiDung);
             }
         } catch (SQLException e) {
@@ -59,8 +61,11 @@ public class QLNDService {
                     String email = resultSet.getString("email");
                     String gioiTinh = resultSet.getString("gioiTinh");
                     String khoa = resultSet.getString("khoa");
+                    String ndk=resultSet.getString("NgayDangKy");
+                    String nhh=resultSet.getString("NgayHetHan");
+                    String ttt=resultSet.getString("TinhTrangThe");
 
-                    TheThanhVien nguoiDung = new TheThanhVien(maDocGia, tenDocGia, soDienThoai, email, gioiTinh, khoa);
+                    TheThanhVien nguoiDung = new TheThanhVien(maDocGia, tenDocGia, soDienThoai, email, gioiTinh, khoa,ttt,ndk,nhh);
                     result.add(nguoiDung);
                 }
             } catch (SQLException e) {

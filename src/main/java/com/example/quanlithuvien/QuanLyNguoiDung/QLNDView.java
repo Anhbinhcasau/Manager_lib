@@ -52,6 +52,12 @@ public class QLNDView implements Initializable {
     private TableColumn<TheThanhVien, String> TCGioiTInh;
     @FXML
     private TableColumn<TheThanhVien, String> TCKhoa;
+    @FXML
+    private TableColumn<TheThanhVien, String> ClNgayDK;
+    @FXML
+    private TableColumn<TheThanhVien, String> ClNgayHH;
+    @FXML
+    private TableColumn<TheThanhVien, String> ClTinhTrang;
 
     private ObservableList<TheThanhVien> theThanhVienObservableList = FXCollections.observableArrayList();
     private ObservableList<LichSuMuonSach> lichSuMuonSachObservableList = FXCollections.observableArrayList();
@@ -86,6 +92,9 @@ public class QLNDView implements Initializable {
         TCSoDienThoai.setCellValueFactory(new PropertyValueFactory<>("soDienThoai"));
         TCEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         TCGioiTInh.setCellValueFactory(new PropertyValueFactory<>("gioiTinh"));
+        ClNgayDK.setCellValueFactory(new PropertyValueFactory<>("ngayDangKi"));
+        ClNgayHH.setCellValueFactory(new PropertyValueFactory<>("ngayHetHan"));
+        ClTinhTrang.setCellValueFactory(new PropertyValueFactory<>("tinhTrangThe"));
         TCKhoa.setCellValueFactory(new PropertyValueFactory<>("khoa"));
 
 
