@@ -17,6 +17,9 @@ public class PhieuMuonTraController {
         PhieuMuonTra phieuMuonTra = new PhieuMuonTra(maDocGia, thoiGianMuon, thoiGianTra, sachMuon, trangThai);
         phieuMuonTraService.addPhieuMuonTra(phieuMuonTra);
     }
+    public void findByIdName(String tenSach){
+
+    }
     public void handleTraSach(String maPhieuMuonTra){
         phieuMuonTraService.traSach(maPhieuMuonTra);
     }
