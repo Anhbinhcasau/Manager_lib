@@ -4,6 +4,7 @@ import Model.Book;
 import Model.TheLoai;
 import Model.TheThanhVien;
 import com.example.quanlithuvien.ConnectDatabase;
+import com.example.quanlithuvien.Home;
 import javafx.application.Platform;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
@@ -11,13 +12,18 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.util.ArrayList;
@@ -38,7 +44,7 @@ public class BookController implements Initializable {
     private TextField textNXB;
     @FXML
     private TextField textSoLuong;
-    ObservableList<TheLoai> theLoaiList  = FXCollections.observableArrayList();
+    public ObservableList<TheLoai> theLoaiList  = FXCollections.observableArrayList();
     ObservableList<String> items = FXCollections.observableArrayList();
     String theLoaiValue;
     @FXML
@@ -61,6 +67,9 @@ public class BookController implements Initializable {
     private ImageView add,edit,search;
     @FXML
     private Label ms_error;
+    @FXML
+    private Label error_sl;
+
 
     ObservableList<Book>  bookList= FXCollections.observableArrayList();
     String idSachUpdate;
@@ -85,7 +94,6 @@ public class BookController implements Initializable {
             }
 
 
-
             book.setMaSach(masach);
             book.setTenSach(tensach);
             book.setTacGia(tacgia);
@@ -104,7 +112,7 @@ public class BookController implements Initializable {
             statement.executeUpdate();
             tbSach.refresh();
             bookList.add(book);
-
+            showRegistrationSuccessDialog();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -119,15 +127,51 @@ public class BookController implements Initializable {
 
             String masach=textMaSach.getText();
             int sl = Integer.parseInt(textSoLuong.getText());
-
-            ThemBook(masach, textTenSach.getText(), textTacGia.getText(), textNXB.getText(), theLoaiValue, sl);
-            tbSach.refresh();
+            if(sl<0){
+                error_sl.setText("Số lượng sách phải lớn hơn 0");
+            }
+            else {
+                ThemBook(masach, textTenSach.getText(), textTacGia.getText(), textNXB.getText(), theLoaiValue, sl);
+                tbSach.refresh();
+                getClear();
+            }
 
 
         }
         catch (Exception e) {
             e.printStackTrace();
         }
+
+    }
+
+    public void theLoai() throws SQLException {
+            ConnectDatabase data = new ConnectDatabase();
+            Connection connection = data.getConnection();
+
+            String selectSql = "SELECT tenTheLoai FROM theloai";
+            PreparedStatement selectStmt = connection.prepareStatement(selectSql);
+            ResultSet rs = selectStmt.executeQuery();
+            // Thêm các thể loại sách vào ChoiceBox
+
+            while (rs.next()) {
+                String tenTheLoai = rs.getString("tenTheLoai");
+                TheLoai theLoai = new TheLoai(tenTheLoai);
+                theLoaiList.add(theLoai);
+
+            }
+            cbTheLoai.getItems().addAll(theLoaiList);
+
+            for (TheLoai theLoai : theLoaiList) {
+                items.add(theLoai.getTenTheLoai());
+            }
+            cbTheLoai.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    theLoaiValue = (String) cbTheLoai.getValue();
+
+                }
+            });
+            cbTheLoai.setItems(items);
 
     }
 
@@ -146,40 +190,14 @@ public class BookController implements Initializable {
         search.setImage(img2);
 
         try{
-        ConnectDatabase data = new ConnectDatabase();
-        Connection connection = data.getConnection();
 
-        String selectSql = "SELECT tenTheLoai FROM theloai";
-        PreparedStatement selectStmt = connection.prepareStatement(selectSql);
-        ResultSet rs = selectStmt.executeQuery();
-        // Thêm các thể loại sách vào ChoiceBox
-
-        while (rs.next()) {
-            String tenTheLoai = rs.getString("tenTheLoai");
-            TheLoai theLoai = new TheLoai(tenTheLoai);
-            theLoaiList.add(theLoai);
-
-        }
-        cbTheLoai.getItems().addAll(theLoaiList);
-
-            for (TheLoai theLoai : theLoaiList) {
-                items.add(theLoai.getTenTheLoai());
-            }
-            cbTheLoai.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    theLoaiValue = (String) cbTheLoai.getValue();
-                    System.out.println(theLoaiValue);
-                    // Thêm giá trị theLoaiValue vào cơ sở dữ liệu ở đây
-                }
-            });
-            cbTheLoai.setItems(items);
             ////List sách
             String queryBook = "SELECT * FROM book";
-
+            ConnectDatabase data = new ConnectDatabase();
+            Connection connection = data.getConnection();
             PreparedStatement selectbook = connection.prepareStatement(queryBook);
             ResultSet rs1 = selectbook.executeQuery();
-
+            System.out.println("Test");
             while(rs1.next()){
                 String idSach=rs1.getString("idSach");
 //                System.out.println(idSach);
@@ -198,6 +216,31 @@ public class BookController implements Initializable {
             ClTheLoai.setCellValueFactory(new PropertyValueFactory<>("TheLoai"));
             ClSoLuong.setCellValueFactory(new PropertyValueFactory<>("SoLuong"));
             tbSach.setItems(bookList);
+
+            String selectSql = "SELECT tenTheLoai FROM theloai";
+            PreparedStatement selectStmt = connection.prepareStatement(selectSql);
+            ResultSet rs = selectStmt.executeQuery();
+            // Thêm các thể loại sách vào ChoiceBox
+
+            while (rs.next()) {
+                String tenTheLoai = rs.getString("tenTheLoai");
+                TheLoai theLoai = new TheLoai(tenTheLoai);
+                theLoaiList.add(theLoai);
+
+            }
+            cbTheLoai.getItems().addAll(theLoaiList);
+
+            for (TheLoai theLoai : theLoaiList) {
+                items.add(theLoai.getTenTheLoai());
+            }
+            cbTheLoai.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    theLoaiValue = (String) cbTheLoai.getValue();
+
+                }
+            });
+            cbTheLoai.setItems(items);
 
             tbSach.refresh();
 
@@ -316,6 +359,13 @@ public class BookController implements Initializable {
         Platform.runLater(() -> {
             tbSach.getItems().clear();
             tbSach.setItems(listBook);
+            try {
+                theLoai();
+                System.out.println("refresh");
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
         });
     }
 
@@ -349,6 +399,35 @@ public class BookController implements Initializable {
             e.printStackTrace();
         }
 
+    }
+    public  void getClear() throws SQLException {
+        textMaSach.setText("");
+        textTenSach.setText("");
+        textNXB.setText("");
+        textTacGia.setText("");
+        textSoLuong.setText("");
+
+
+
+    }
+
+    public void btThemTheLoai(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Home.class.getResource("TheLoai.fxml"));
+        AnchorPane root = fxmlLoader.load();
+        Stage primaryStage=new Stage();
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Thông kê");
+        primaryStage.show();
+    }
+    public void showRegistrationSuccessDialog() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Thêm sách thành công ");
+        alert.setHeaderText(null);
+        alert.setContentText("Thêm sách thành công ");
+        ButtonType exitButton = new ButtonType("OK", ButtonBar.ButtonData.CANCEL_CLOSE);
+        alert.getButtonTypes().setAll( exitButton);
+        alert.show();
     }
 }
 

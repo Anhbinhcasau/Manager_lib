@@ -14,7 +14,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
+import java.io.File;
 import java.net.URL;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -56,6 +59,8 @@ public class PhieuMuonTraView implements Initializable {
     private DatePicker dateNgayTra;
     @FXML
     private TextField textMaDocGia;
+    @FXML
+    public ImageView delete_book,delete_loan,edit_sach,IMG_ADD,doc_g;
 
 
 
@@ -94,6 +99,23 @@ public class PhieuMuonTraView implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources)  {
+
+        File image = new File("img/delete.png");
+        Image img = new Image(image.toURI().toString());
+        delete_book.setImage(img);
+        File image1 = new File("img/delete.png");
+        Image img1 = new Image(image1.toURI().toString());
+        delete_loan.setImage(img1);
+        File image2 = new File("img/edit.png");
+        Image img2 = new Image(image2.toURI().toString());
+        edit_sach.setImage(img2);
+        File image3 = new File("img/add.png");
+        Image img3 = new Image(image3.toURI().toString());
+        IMG_ADD.setImage(img3);
+        File image4 = new File("img/user.png");
+        Image img4 = new Image(image4.toURI().toString());
+        doc_g.setImage(img4);
+
         BooksService booksService = new BooksService(connectDatabase.getConnection());
         PhieuMuonTraService phieuMuonTraService = new PhieuMuonTraService(connectDatabase.getConnection());
         try {

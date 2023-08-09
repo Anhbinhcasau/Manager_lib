@@ -41,6 +41,7 @@ public class PhieuMuonTraService {
 
             if (resultSet.next()) {
                 isTrangThaiTrue = resultSet.getBoolean("trangThai");
+                System.out.println(isTrangThaiTrue);
             }
         } catch (SQLException e) {
             e.printStackTrace();

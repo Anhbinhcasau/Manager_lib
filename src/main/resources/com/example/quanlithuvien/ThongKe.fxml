@@ -1,29 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600" prefWidth="800" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlithuvien.ThongKe.ThongKeController">
-    <TableView fx:id="thongKeTable" layoutX="20" layoutY="20" prefHeight="300" prefWidth="760">
+<AnchorPane prefHeight="780.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlithuvien.ThongKe.ThongKeController">
+    <TableView fx:id="thongKeTable" layoutX="22.0" layoutY="144.0" prefHeight="222.0" prefWidth="760.0">
         <columns>
             <TableColumn fx:id="maSachColumn" prefWidth="100" text="Mã sách" />
             <TableColumn fx:id="tenSachColumn" prefWidth="200" text="Tên sách" />
-            <TableColumn fx:id="soLuongMuonColumn" prefWidth="150" text="Tổng số lượng mượn" />
-            <TableColumn fx:id="conNoColumn" prefWidth="150" text="Tổng đang nợ" />
+            <TableColumn fx:id="soLuongMuonColumn" prefWidth="212.00006103515625" text="Tổng số lượng mượn" />
+            <TableColumn fx:id="conNoColumn" prefWidth="247.20001220703125" text="Tổng đang nợ" />
         </columns>
     </TableView>
 
-    <TableView fx:id="chiTietTable" layoutX="20" layoutY="350" prefHeight="200" prefWidth="760">
+    <TableView fx:id="chiTietTable" layoutX="22.0" layoutY="466.0" prefHeight="200" prefWidth="760">
         <columns>
             <TableColumn fx:id="tenSachChiTietColumn" prefWidth="99.0" text="Tên sách" />
             <TableColumn fx:id="ngayTraColumn" prefWidth="117.00001525878906" text="Ngày phải trả" />
             <TableColumn fx:id="maNguoiMuonColumn" prefWidth="198.60003662109375" text="Mã người mượn" />
             <TableColumn fx:id="soLuongColumn" prefWidth="166.59994506835938" text="Số lượng mượn" />
-            <TableColumn fx:id="tinhTrangColumn" prefWidth="221.4000244140625" text="Tình trạng" />
+            <TableColumn fx:id="tinhTrangColumn" prefWidth="176.0" text="Tình trạng" />
         </columns>
     </TableView>
 
-    <HBox layoutX="20" layoutY="323.0" prefHeight="27.0" prefWidth="672.0" spacing="10">
+    <HBox layoutX="22.0" layoutY="423.0" prefHeight="27.0" prefWidth="672.0" spacing="10">
         <HBox spacing="5">
             <Label prefHeight="25.0" prefWidth="46.0" text="Từ ngày:" />
             <DatePicker fx:id="startDatePicker" />
@@ -32,8 +40,32 @@
             <Label prefHeight="26.0" prefWidth="54.0" text="Đến ngày:" />
             <DatePicker fx:id="endDatePicker" />
            <Button onAction="#filterBooks" prefHeight="26.0" prefWidth="79.0" text="Lọc sách" />
-            <Button onAction="#detailBooks" prefHeight="26.0" prefWidth="111.0" text="Xem chi tiết" />
+            <Button onAction="#detailBooks" prefHeight="26.0" prefWidth="86.0" text="Xem chi tiết" />
 
         </HBox>
     </HBox>
+   <AnchorPane prefHeight="82.0" prefWidth="789.0" style="-fx-background-color: E0E0E0;">
+      <children>
+         <Label layoutX="319.0" layoutY="39.0" prefHeight="27.0" prefWidth="152.0" text="THỐNG KÊ" textFill="#009999">
+            <font>
+               <Font name="System Bold" size="22.0" />
+            </font>
+         </Label>
+         <ImageView fx:id="tke" fitHeight="58.0" fitWidth="122.0" layoutX="447.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+             <image>
+                 <Image url="@../../../../../../img/thong.png" />
+             </image>
+         </ImageView>
+      </children>
+   </AnchorPane>
+   <Label layoutX="22.0" layoutY="115.0" text="Thống kê sách mượn ">
+      <font>
+         <Font name="System Bold" size="15.0" />
+      </font>
+   </Label>
+   <Label layoutX="22.0" layoutY="379.0" text="Xem chi tiết ">
+      <font>
+         <Font name="System Bold" size="15.0" />
+      </font>
+   </Label>
 </AnchorPane>
