@@ -16,7 +16,7 @@ public class ThongKeService {
     }
 
 
-    public List<ThongKe> listThongKe(java.util.Date ngayMuon, Date ngayTra) {
+    public List<ThongKe> listThongKe(Date ngayMuon, Date ngayTra) {
         List<ThongKe> thongKeList = new ArrayList<>();
 
         String queryForBorrow = "SELECT s.idSach, s.tenSach, SUM(sm.soLuongMuon) AS tongSoLuongMuon " +
@@ -24,16 +24,13 @@ public class ThongKeService {
                 "JOIN sachmuon sm ON pm.maPhieuMuonTra = sm.phieuMuon " +
                 "JOIN book s ON sm.idSach = s.idSach " +
                 "WHERE (pm.ngayMuon >= ? OR pm.ngayTra <= ?) AND pm.trangThai = 0 " +
-                "GROUP BY s.idSach, s.tenSach " +
-                "ORDER BY tongSoLuongMuon DESC";
-
+                "GROUP BY s.idSach, s.tenSach ";
         String queryForReturn = "SELECT s.idSach, s.tenSach, SUM(sm.soLuongMuon) AS tongSoLuongTra " +
                 "FROM phieumuontra pm " +
                 "JOIN sachmuon sm ON pm.maPhieuMuonTra = sm.phieuMuon " +
                 "JOIN book s ON sm.idSach = s.idSach " +
                 "WHERE (pm.ngayMuon >= ? OR pm.ngayTra <= ?) AND pm.trangThai = 1 " +
-                "GROUP BY s.idSach, s.tenSach " +
-                "ORDER BY tongSoLuongTra DESC";
+                "GROUP BY s.idSach, s.tenSach ";
 
         try (PreparedStatement statementForBorrow = connection.prepareStatement(queryForBorrow);
              PreparedStatement statementForReturn = connection.prepareStatement(queryForReturn)) {
@@ -47,20 +44,26 @@ public class ThongKeService {
             statementForReturn.setDate(2,  ngayTraSQL);
 
             ResultSet borrowResult = statementForBorrow.executeQuery();
-
             ResultSet returnResult = statementForReturn.executeQuery();
-            boolean hasReturnData = returnResult.next();
+
             while (borrowResult.next()) {
                 String idSachBorrow = borrowResult.getString("idSach");
                 String tenSachBorrow = borrowResult.getString("tenSach");
                 int tongSoLuongMuon = borrowResult.getInt("tongSoLuongMuon");
-
                 int tongSoLuongTra = 0;
-                if (hasReturnData) {
-                    tongSoLuongTra = returnResult.getInt("tongSoLuongTra");
+
+                while (returnResult.next()) {
+                    if (returnResult.getString("idSach").equals(idSachBorrow)) {
+                        tongSoLuongTra = returnResult.getInt("tongSoLuongTra");
+                        break;
+                    }
                 }
+
                 ThongKe thongKe = new ThongKe(idSachBorrow, tenSachBorrow, tongSoLuongMuon, tongSoLuongTra);
                 thongKeList.add(thongKe);
+
+                // Reset the returnResult cursor before processing the next borrowResult
+                returnResult.beforeFirst();
             }
         } catch (SQLException e) {
             e.printStackTrace();

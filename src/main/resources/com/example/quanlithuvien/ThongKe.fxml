@@ -9,7 +9,7 @@
             <TableColumn fx:id="maSachColumn" prefWidth="100" text="Mã sách" />
             <TableColumn fx:id="tenSachColumn" prefWidth="200" text="Tên sách" />
             <TableColumn fx:id="soLuongMuonColumn" prefWidth="150" text="Tổng số lượng mượn" />
-            <TableColumn fx:id="conNoColumn" prefWidth="150" text="Tổng đang nợ" />
+            <TableColumn fx:id="conNoColumn" prefWidth="150" text="Tổng đã trả" />
         </columns>
     </TableView>
 

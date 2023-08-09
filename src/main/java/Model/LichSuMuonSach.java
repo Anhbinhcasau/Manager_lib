@@ -82,7 +82,8 @@ public class LichSuMuonSach {
     public String getTrangThaiHienThi() {
         if (trangThai) {
             return "Đã trả";
-        } else if (thoiGianTra != null && thoiGianMuon.after(new Date())) {
+        }
+        if (thoiGianTra != null && thoiGianTra.before(new Date())) {
             return "Đang nợ";
         } else {
             return "Đang mượn";
