@@ -46,7 +46,7 @@ public class QLNDService {
     }
 
     public void suaThongTinNguoiDung(String maND, String email, String hoTen, String soDienThoai){
-        String updateQuery = "UPDATE thethanhvien SET (email, tenDocGia, soDienThoai) = (?, ?, ?) WHERE maDocGia = ?";
+        String updateQuery = "UPDATE thethanhvien SET email = ?, tenDocGia = ?, soDienThoai = ? WHERE maDocGia = ?";
         try(PreparedStatement statement = connection.prepareStatement(updateQuery)){
             statement.setString(1, email);
             statement.setString(2, hoTen);

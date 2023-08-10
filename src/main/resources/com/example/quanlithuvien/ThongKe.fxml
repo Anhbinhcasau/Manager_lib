@@ -16,8 +16,9 @@
         <columns>
             <TableColumn fx:id="maSachColumn" prefWidth="100" text="Mã sách" />
             <TableColumn fx:id="tenSachColumn" prefWidth="200" text="Tên sách" />
-            <TableColumn fx:id="soLuongMuonColumn" prefWidth="212.00006103515625" text="Tổng số lượng mượn" />
-            <TableColumn fx:id="conNoColumn" prefWidth="247.20001220703125" text="Tổng đang nợ" />
+
+            <TableColumn fx:id="soLuongMuonColumn" prefWidth="150" text="Tổng số lượng mượn" />
+            <TableColumn fx:id="conNoColumn" prefWidth="150" text="Tổng đã trả" />
         </columns>
     </TableView>
 

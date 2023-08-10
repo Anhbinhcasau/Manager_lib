@@ -61,7 +61,7 @@ public class PhieuMuonTra {
     public String getTrangThaiHienThi() {
         if (trangThai) {
             return "Đã trả";
-        } else if (thoiGianTra != null && thoiGianMuon.after(new Date())) {
+        } else if (thoiGianTra != null && thoiGianTra.before(new Date())) {
             return "Đang nợ";
         } else {
             return "Đang mượn";

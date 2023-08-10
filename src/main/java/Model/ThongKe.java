@@ -6,6 +6,27 @@ public class ThongKe {
     private String maSach;
     private String tenSach;
     private int soLuongMuon;
+
+    public int getSoLuongDangNo() {
+        return soLuongDangNo;
+    }
+
+    public void setSoLuongDangNo(int soLuongDangNo) {
+        this.soLuongDangNo = soLuongDangNo;
+    }
+
+    private int soLuongDangNo;
+
+    public int getSoLuongDaTra() {
+
+        return soLuongDaTra;
+    }
+
+    public void setSoLuongDaTra(int soLuongDaTra) {
+        this.soLuongDaTra = soLuongDaTra;
+    }
+
+    private int soLuongDaTra;
     private String maDocGia;
 
     public String getMaDocGia() {
@@ -88,6 +109,9 @@ public class ThongKe {
         this.tenSach = tenSach;
         this.soLuongMuon = soLuongMuon;
         this.soLuongNo = soLuongNo;
+
+        //So luong dang no
+
     }
     public ThongKe(String tenSach, Date ngayMuon, Date ngayTra, String maDocGia, int soLuongMuon, Boolean trangThai) {
         this.maDocGia = maDocGia;
