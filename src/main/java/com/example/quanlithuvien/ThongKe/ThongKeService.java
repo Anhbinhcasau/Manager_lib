@@ -95,6 +95,7 @@ public class ThongKeService {
                 int soLuongMuon = resultSet.getInt("soLuongMuon");
                 String maDocGia = resultSet.getString("maDocGia");
                 Boolean trangThai = resultSet.getBoolean("trangThai");
+                System.out.println(trangThai);
 
                 ThongKe thongKe = new ThongKe(tenSach, ngayMuonResult, ngayTraResult, maDocGia, soLuongMuon, trangThai);
                 thongKeList.add(thongKe);

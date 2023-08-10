@@ -4,6 +4,7 @@ import Model.Book;
 import Model.Khoa;
 import Model.TheLoai;
 import Model.TheThanhVien;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.net.URL;
@@ -25,6 +27,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class Dangki_thanhvien_Controller implements Initializable {
+    private Stage primaryStage;
     ConnectDatabase data = new ConnectDatabase();
     Connection connection = data.getConnection();
     @FXML
@@ -48,6 +51,7 @@ public class Dangki_thanhvien_Controller implements Initializable {
     @FXML
     private ImageView img_register;
 
+
     String khoa;
     ObservableList<Khoa> khoaList= FXCollections.observableArrayList();
     ObservableList<String> items = FXCollections.observableArrayList();
@@ -64,7 +68,9 @@ public class Dangki_thanhvien_Controller implements Initializable {
         theThanhVien.setNgayDangKi(Ngaydangki);
         theThanhVien.setNgayHetHan(Ngayhethan);
         theThanhVien.setTinhTrangThe("Đang sử dụng");
-        ////Chọn giói tính
+        ////Chọn giói tínhDangki_thanhvien tv = new Dangki_thanhvien();
+        //        tv.setPrimaryStage(primaryStage);
+        //        tv.showRegistrationSuccessDialog();
 
 
 
@@ -139,5 +145,9 @@ public class Dangki_thanhvien_Controller implements Initializable {
         String formatnkt = localDateHH.format(formatter);
         String gender = ((RadioButton) group.getSelectedToggle()).getText();
         DangKi(textMaDocGia.getText(),textTenDG.getText(),textSDT.getText(),textEmail.getText(),gender,khoa,formatnkh,formatnkt);
+       // this.primaryStage = primaryStage;
+        Dangki_thanhvien tv = new Dangki_thanhvien();
+        tv.showRegistrationSuccessDialog();
     }
+
 }

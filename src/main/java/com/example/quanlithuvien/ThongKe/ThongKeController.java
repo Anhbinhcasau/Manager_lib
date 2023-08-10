@@ -19,7 +19,10 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
+import java.io.File;
 import java.net.URL;
 import java.sql.Date;
 import java.text.ParseException;
@@ -68,6 +71,9 @@ public class ThongKeController implements Initializable {
     @FXML
     private DatePicker endDatePicker;
 
+    @FXML
+    private ImageView tke;
+
     private ObservableList<ThongKe> listSachThongKeObservableList = FXCollections.observableArrayList();
 
     ConnectDatabase connectDatabase = new ConnectDatabase();
@@ -76,6 +82,10 @@ public class ThongKeController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources)  {
+
+        File image = new File("img/thong.png");
+        Image img = new Image(image.toURI().toString());
+        tke.setImage(img);
 
         maSachColumn.setCellValueFactory(new PropertyValueFactory<>("maSach"));
         tenSachColumn.setCellValueFactory(new PropertyValueFactory<>("tenSach"));
